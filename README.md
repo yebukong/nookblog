@@ -15,7 +15,9 @@ nookblog 是一款基于SpringBoot开发的博客发布系统。
 
 ## 界面预览
 
+![博客页](https://images.gitee.com/uploads/images/2019/0222/174514_a6b111a3_884684.png "blog.png")
 
+![cms页](https://images.gitee.com/uploads/images/2019/0222/174607_529f0b4f_884684.png "cms.png")
 
 ## 介绍
 
