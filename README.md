@@ -19,6 +19,8 @@ nookblog 是一款基于SpringBoot开发的博客发布系统。
 
 ![cms页](https://images.gitee.com/uploads/images/2019/0222/174607_529f0b4f_884684.png "cms.png")
 
+![新增文章](https://images.gitee.com/uploads/images/2019/0222/174950_b7f8df16_884684.png "add.png")
+
 ## 介绍
 
  nookblog 持久层框架使用了MyBatis-Plus，文章模板引擎使用FreeMarker，CMS界面基于X-admin V2.0,博客界面来源于互联网
