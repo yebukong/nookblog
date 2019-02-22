@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>解析md语法 | Mine &amp; Blog</title>
+
+		<!-- meta -->
+		<meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon" />
+
+	    <!-- css -->
+		<link rel="stylesheet" href="../lib/bootstrap/3.3.2/bootstrap.min.css">
+		<!--<link href="https://unpkg.com/ionicons@4.4.1/dist/css/ionicons.min.css" rel="stylesheet">-->
+		<link href="https://cdn.staticfile.org/ionicons/4.4.1/css/ionicons.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="../css/pace.css">
+	    <link rel="stylesheet" href="../css/custom.css">
+		<!--md-->
+        <link rel="stylesheet" href="../lib/editor-md/css/editormd.preview.css" />
+	    <!-- js -->
+	    <script src="../js/cute-title.js"></script>
+	    <script src="../js/jquery-2.1.3.min.js"></script>
+	    <script src="../lib/bootstrap/3.3.2/bootstrap.min.js"></script>
+	    <script src="../js/pace.min.js"></script>
+	    <script src="../js/modernizr.custom.js"></script>
+	    <!--回到顶部-->
+	    <link rel="stylesheet" href="../lib/to-top/to-top.css" media="all">
+  		<script src="../lib/to-top/to-top.js"></script>
+	</head>
+
+	<body id="single">
+		<div class="container">	
+			<header id="site-header">
+				<div class="row">
+					<div class="col-md-4 col-sm-5 col-xs-8">
+						<div class="logo">
+							<h1><a href="../index.html"><b>Mine</b> &amp; Nook</a></h1>
+						</div>
+					</div><!-- col-md-4 -->
+					<div class="col-md-8 col-sm-7 col-xs-4">
+						<nav class="main-nav" role="navigation">
+							<div class="navbar-header">
+  								<button type="button" id="trigger-overlay" class="navbar-toggle">
+    								<span class="ion-ios-menu"></span>
+  								</button>
+							</div>
+							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  								<ul class="nav navbar-nav navbar-right">
+    								<li class="cl-effect-11"><a href="../index.html" data-hover="首页" title="首页">首页</a></li>
+    								<li class="cl-effect-11"><a href="../archives.html" data-hover="时间轴" title="时间轴">时间轴</a></li>
+    								<li class="cl-effect-11"><a href="../unfinish.html" data-hover="实验室" title="Ye's Nook">实验室</a></li>
+    								<li class="cl-effect-11"><a href="../about-me.html" data-hover="关于" title="关于">关于</a></li>
+  								</ul>
+							</div><!-- /.navbar-collapse -->
+						</nav>
+						<div id="header-search-box">
+							<a id="search-menu" href="#"><span id="search-icon" class="icon ion-md-search"></span></a>
+							<div id="search-form" class="search-form">
+								<form role="search" method="get" id="searchform" action="#">
+									<input type="search" placeholder="Search" required>
+									<button type="submit"><span class="ion-ios-search"></span></button>
+								</form>				
+							</div>
+						</div>
+					</div><!-- col-md-8 -->
+				</div>
+			</header>
+		</div>
+
+		<div class="content-body">
+			<div class="container">
+				<div class="row">
+					<main class="col-md-8">
+						<article class="post post-1">
+							<header class="entry-header">
+								<h1 class="entry-title">来试验一下EditorMD展示效果</h1>
+								<div class="entry-meta">
+ 									<span class="post-date"><a href="#"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">2018/09/07</time></a></span>
+
+									<span class="post-category"><a href="#">md写作</a></span>
+			
+									<span class="post-author"><a href="#">~500字</a></span>
+			
+									<span class="comments-link"><a href="#">4 浏览</a></span>
+								</div>
+							</header>
+							<div class="entry-content clearfix">
+								 <div id="test-editormd-view">
+					               <textarea style="display:none;" name="test-editormd-markdown-doc">###Hello world!</textarea>               
+					            </div>
+					            <div id="test-editormd-view2">
+                <textarea id="append-test" style="display:none;">
+
+###科学公式 TeX(KaTeX)
+                    
+$$E=mc^2$$
+
+行内的公式$$E=mc^2$$行内的公式，行内的$$E=mc^2$$公式。
+
+$$\(\sqrt{3x-1}+(1+x)^2\)$$
+                    
+$$\sin(\alpha)^{\theta}=\sum_{i=0}^{n}(x^i + \cos(f))$$
+
+$$X^2 > Y$$
+
+#####上标和下标
+
+上标：X&lt;sup&gt;2&lt;/sup&gt;
+
+下标：O&lt;sub&gt;2&lt;/sub&gt;
+
+##### 代码块里包含的过滤标签及属性不会被过滤
+
+```html
+&lt;style type="text/style"&gt;
+body{background:red;}
+&lt;/style&gt;
+
+&lt;script type="text/javscript"&gt;
+alert("script");
+&lt;/script&gt;
+
+&lt;iframe height=498 width=510 src="http://player.youku.com/embed/XMzA0MzIwMDgw" frameborder=0 allowfullscreen&gt;&lt;/iframe&gt;
+```
+
+#####Style
+
+&lt;style&gt;
+body{background:red;}
+&lt;/style&gt;
+
+&lt;style type="text/style"&gt;
+body{background:red;}
+&lt;/style&gt;
+
+#####Script
+
+&lt;script&gt;
+alert("script");
+&lt;/script&gt;
+
+&lt;script type="text/javscript"&gt;
+alert("script");
+&lt;/script&gt;</textarea>          
+            </div>
+							</div>
+						</article>
+					</main>
+					<aside class="col-md-4">
+						<div class="widget ">		
+							<h3 class="widget-title">文章目录结构</h3>	
+							 <div id="sidebar">
+					                <div class="markdown-body editormd-preview-container" id="custom-toc-container">#custom-toc-container</div>
+					         </div>
+						</div>
+						<div class="widget widget-archives">		
+							<h3 class="widget-title">拥有标签</h3>		
+							<ul>
+								<li>
+									<a href="#">November 2014</a>
+								</li>
+								<li>
+									<a href="#">September 2014</a>
+								</li>
+								<li>
+									<a href="#">January 2013</a>
+								</li>
+							</ul>
+						</div>
+
+						<div class="widget widget-category">		
+							<h3 class="widget-title">这里放点什么呢？</h3>		
+							   
+						</div>
+					</aside>
+				</div>
+			</div>
+		</div>
+		<footer id="site-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="beian">
+							<a href="http://www.miitbeian.gov.cn" target="_blank">京ICP备18052530号</a>
+							<span> | </span> 
+							<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=14010802080176" target="_blank">晋公网安备 14010802080176号</a>
+						</div>
+						<div class="copyright">
+							<a href="https://yebukong.com" target="_blank" title="叶不空's 博客站点">叶不空</a>
+							<span>&copy;2018 Mine &amp; Nook</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- Mobile Menu -->
+		<div id = 'mobile-menu' class="overlay overlay-hugeinc">
+			<button type="button" class="overlay-close"><span class="ion-ios-close"></span></button>
+			<nav>
+				<ul>
+					<li><a href="../index.html"  title="首页">首页</a></li>
+					<li><a href="../archives.html" title="时间轴">时间轴</a></li>
+					<li><a href="../unfinish.html" title="实验室">实验室</a></li>
+					<li><a href="../about-me.html" title="关于">关于</a></li>
+				</ul>
+			</nav>
+		</div>
+		
+		<script src="../js/script.js"></script>
+        <script src="../lib/editor-md/lib/marked.min.js"></script>
+        <script src="../lib/editor-md/lib/prettify.min.js"></script>
+        <script src="../lib/editor-md/lib/raphael.min.js"></script>
+        <script src="../lib/editor-md/lib/underscore.min.js"></script>
+        <script src="../lib/editor-md/lib/sequence-diagram.min.js"></script>
+        <script src="../lib/editor-md/lib/flowchart.min.js"></script>
+        <script src="../lib/editor-md/lib/jquery.flowchart.min.js"></script>
+        
+        <script src="../lib/editor-md/editormd.js"></script>
+		<script type="text/javascript">
+            $(function() {
+                var testEditormdView, testEditormdView2;
+                //重定义emojis地址
+                editormd.emoji  = {
+                    path  : "../lib/editor-md/plugins/emoji-dialog/emojis/",
+                    ext   : ".png"
+                };
+                $.get("../test.md", function(markdown) {
+                    
+				    testEditormdView = editormd.markdownToHTML("test-editormd-view", {
+                        markdown        : markdown ,//+ "\r\n" + $("#append-test").text(),
+                        //htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
+                        htmlDecode      : "style,script,iframe",  // you can filter tags decode
+                        //toc             : false,
+                        tocm            : true,    // Using [TOCM]
+                        tocContainer    : "#custom-toc-container", // 自定义 ToC 容器层
+                        //gfm             : false,
+                        //tocDropdown     : true,
+                        markdownSourceCode : false, // 是否保留 Markdown 源码，即是否删除保存源码的 Textarea 标签
+                        emoji           : true,
+                        taskList        : true,
+                        tex             : true,  // 默认不解析
+                        flowChart       : true,  // 默认不解析
+                        sequenceDiagram : true,  // 默认不解析
+                    });
+                    
+                    //console.log("返回一个 jQuery 实例 =>", testEditormdView);
+                    
+                    // 获取Markdown源码
+                    //console.log(testEditormdView.getMarkdown());
+                    
+                    //alert(testEditormdView.getMarkdown());
+                });
+                    
+//              testEditormdView2 = editormd.markdownToHTML("test-editormd-view2", {
+//                  htmlDecode      : "style,script,iframe",  // you can filter tags decode
+//                   tocm            : true,    // Using [TOCM]
+//                  emoji           : true,
+//                  taskList        : true,
+//                  tex             : true,  // 默认不解析
+//                  flowChart       : true,  // 默认不解析
+//                  sequenceDiagram : true,  // 默认不解析
+//              });
+					$("#test-editormd-view").click(function(){
+					console.info($("#test-editormd-view").html());
+					});
+					$("#custom-toc-container").click(function(){
+					console.info($("#custom-toc-container").html());
+					});
+				
+            });
+        </script>
+	</body>
+</html>

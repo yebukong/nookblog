@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>代码管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/xadmin.css">
+    <script type="text/javascript" src="./lib/jq/v3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  
+  <body>
+    <div class="x-body layui-anim layui-anim-upbit">
+      <div class="layui-row">
+        <div class="layui-form layui-col-md12 x-so">
+          <input id="key" type="text"   placeholder="搜索" autocomplete="off" class="layui-input">
+          <button id="soBtn" class="layui-btn" lay-submit=""><i class="layui-icon">&#xe615;</i></button>
+        </div>
+      </div>
+    	<div class="layui-row">
+               <table class="layui-hidden" id="treeTable" lay-filter="treeTable"></table>
+       </div>	
+    	<script type="text/html" id="statusTpl">
+			  <input type="checkbox" name="status" value="{{d.status}}" lay-skin="switch" lay-text="有效|无效" lay-filter="statusDemo" {{ d.status=='VALID'?'checked':'' }}>
+			</script>
+			<script type="text/html" id="oneToolbar">
+				<div class="layui-btn-container layui-btn-group">
+					<button class="layui-btn layui-btn-sm"  id = 'addBtn'   lay-event="add" >
+						<i class="layui-icon layui-icon-add-1"></i>新增</button>
+					<button class="layui-btn layui-btn-sm  layui-btn-danger" id = 'reloadBtn'>
+						<i class="layui-icon layui-icon-refresh"></i>重载</button>
+					<button class="layui-btn layui-btn-sm   layui-btn-normal" id = 'openAllBtn'>全部展开</button>
+					<button class="layui-btn layui-btn-sm   layui-btn-normal" id = 'closeAllBtn'>全部折叠</button>
+				</div>
+			</script>
+			<script type="text/html" id="oneBar">
+					<div class="layui-btn-container layui-btn-group">
+						<!--对于代码子项，新增按钮可以隐藏-->
+						{{#  if(d.relaNo.length < 1){ }}
+						<a class="layui-btn layui-btn-primary layui-btn-xs" title="新增子项" id ='addSubBtn' lay-event="add_sub"><i class="layui-icon">&#xe654;</i></a>
+						{{#  } }}        
+					  <a class="layui-btn layui-btn-primary layui-btn-xs" title="编辑" id ='editBtn'  lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
+						<a class="layui-btn layui-btn-primary  layui-btn-xs" title="删除"id ='delBtn'  lay-event="del"><i class="layui-icon">&#xe640;</i></a>
+					</div>
+			</script>
+    </div>
+	<script>
+        layui.config({
+          base: './lib/' //存放lay拓展模块的根目录
+        }).extend({ //设定模块别名
+          treeGrid: 'treeTable/treeGrid'
+        });
+        layui.use(['table','treeGrid'], function(){
+            var $ = layui.jquery;
+            var form = layui.form;
+            var table = layui.table;
+            var tableId='treeTable';
+			//treeTable
+			var treeGrid = layui.treeGrid;//很重要
+			var ptable=treeGrid.render({
+                id:tableId
+                ,elem: '#'+tableId
+                ,url:'./code/treeData'
+                ,request:{
+                    pageName : 'current'
+                    ,limitName : 'size'
+                }
+                ,cellMinWidth: 80
+                ,idField:'itemNo'//必須字段
+                ,treeId:'itemNo'//树形id字段名称
+                ,treeUpId:'relaNo'//树形父id字段名称
+                ,treeShowName:'itemName'//以树形式显示的字段
+                ,heightRemove:[85]//不计算的高度,表格设定的是固定高度，此项不生效
+                //,height: 'full-85'
+                ,isFilter:false
+                ,iconOpen:true//是否显示图标【默认显示】
+                ,isOpenDefault:false //节点默认是展开还是折叠【默认展开】
+                ,loading:true
+                ,method:'get'
+                ,toolbar: '#oneToolbar'
+                //,where:{name:'123'}
+                ,cols: [[
+                    //{type:'numbers'}
+                    //,{type:'radio'}
+                    {type:'checkbox',sort:true}
+                    ,{field:'id',width:80, title: '流水号',sort:false}
+                    ,{field:'itemName', width:180,title: '代码项名称',edit:false/*'text'*/,sort:false}
+                    ,{field:'itemNo', title: '代码项编号',sort:false}
+                    ,{field:'sortNo', title: '排序号',sort:false}
+                    ,{field:'relaNo', title: '关联编号',sort:false}
+                    ,{field:'value', title: '值',sort:false}
+					//,{field:'created', width:180, title: '创建时间',sort:false}
+					//,{field:'modified', width:180, title: '修改时间',sort:false}
+                    ,{field:'description', title: '简介',sort:false}
+                    ,{field:'status', title: '状态',fixed: 'right',templet: '#statusTpl',width:100}
+                    ,{field:'oneBar',fixed: 'right',title:'操作', toolbar: '#oneBar',width:110}
+                ]]
+                ,isPage:true
+                ,page: {
+                    limit : 100
+                    ,limits: [8,30,50,100,200,500]
+                }
+                ,parseData:function (res) {//数据加载后回调:数据格式转换
+                    var treeData = {};
+                    if(res && res.code == 0){
+                        treeData['data'] = res.data.records;
+                        treeData['msg'] = res.msg;
+                        treeData['code'] = res.code;
+                        treeData['count'] = res.data.total;
+                    }else{
+                        treeData['data'] = null;
+                        treeData['msg'] = '数据有误';
+                        treeData['code'] = -1;
+                        treeData['count'] = 0;
+                    }
+                    return treeData;
+                }
+                ,onClickRow:function (index, o) {
+                    //console.log(index,o,"单击！");
+                }
+                ,onDblClickRow:function (index, o) {
+                    console.log(index,o,"双击");
+                }
+            });
+
+			//监听
+			form.on('switch(statusDemo)', function(obj){
+				var dataIndex=$(this).parents('tr').attr("data-index");
+				var dataList=treeGrid.getDataList(tableId);
+				var o=dataList[dataIndex];
+			  	if(obj.elem.checked){
+			  		o.status = 'VALID';
+			  	}else{
+			  		o.status = 'INVALID';
+			  	}
+			    //layer.tips('id :'+o.id + ' ' +this.value + ' ' + this.name + '：'+ obj.elem.checked, obj.othis);
+				MineUtil.ajax({
+				  url: './code/updateStatus'
+				  ,type: 'POST'
+				  ,data:{id:o.id,status:o.status}
+				  ,success: function(data,status){
+					if(data && data.code == 0){
+						layer.tips("切换成功",obj.othis);
+					}else{
+						layer.tips("切换失败",obj.othis);
+					}
+				  }
+				});
+			});
+			treeGrid.on('tool('+tableId+')',function (obj) {
+				if(obj.event === 'del'){//删除行
+					del(obj);
+				}else if(obj.event==="edit"){//修改行
+					edit(obj);
+				}else if(obj.event==="add_sub"){//添加行
+					add_sub(obj);
+				}
+       		 });
+			//头工具栏事件
+		  	$('#addBtn').click(add);
+	    	$('#reloadBtn').click(reloadData);
+    		$('#openAllBtn').click(openAll);
+    		$('#closeAllBtn').click(closeAll);
+			function del(pObj) {
+				var pdata=pObj?pObj.data:null;
+				var params={};
+				layer.confirm("你确定删除数据吗？如果存在下级节点则一并删除，此操作不能撤销！", {icon: 3, title:'提示'},
+					function(index){//确定回调
+						 MineUtil.ajax({  //发异步，把数据提交给后端
+							  url: './code/relaDel'
+							  ,type: 'POST'
+							  ,data: pdata
+							  ,success: function(data,status){
+								if(data && data.code == 0){
+									layer.msg("删除成功" , {icon: 1,time: 1000}, function(){
+										reloadData();
+									});
+								}else{
+									layer.msg(data.msg , {icon: 5,time: 2000},function(){
+										reloadData();
+									});
+								}
+							  }
+							});
+						layer.close(index);
+					},function (index) {//取消回调
+					   layer.close(index);
+					}
+				);
+			}
+		    //修改
+		    function edit(pObj) {
+		        var pdata=pObj?pObj.data:null;
+		        var params={};
+		        params['pageType'] = 'edit';
+		        params['initJsonData'] = pdata;
+		        MineUtil.openPage({
+			    		resultFor:'#editBtn',title:'代码项信息',w:700,h:520
+			    		,url:'./code-one.html'
+			    		,params: params
+			    		,result : function(result){
+			    			reloadData();
+		        		//treeGrid.addRow(tableId,pdata?pdata[treeGrid.config.indexName]+1:0,param);
+		    		}
+	    		});
+		    }
+		    function add(){
+		    	MineUtil.openPage({
+		    		resultFor:'#addBtn',title:'新增代码项',w:700,h:520
+		    		,url:'./code-one.html'
+		    		,params:{ pageType:'add'}
+		    		,result : function(result){
+		    			reloadData();
+		    		}
+		    	});
+		    }
+		     //添加
+		    function add_sub(pObj) {
+	        var pdata=pObj?pObj.data:null;
+					if(pdata.relaNo){
+						layer.msg("代码子项无法不允许子项!" , {anim: 6, icon: 5});
+						return false;
+					}
+	        var params={};
+	        params['pageType'] = 'addSub';
+	        params['relaNo'] = pdata.itemNo;
+	        MineUtil.openPage({
+		    		resultFor:'#addSubBtn',title:'新增代码子项',w:700,h:520
+		    		,url:'./code-one.html'
+		    		,params: params
+		    		,result : function(result){
+		    			reloadData();
+		    			//layer.alert(result + '刷新数据');
+		        	//treeGrid.addRow(tableId,pdata?pdata[treeGrid.config.indexName]+1:0,param);
+		    		}
+	    		});
+		    }
+		    function openAll(){
+			    var treedata=treeGrid.getDataTreeList(tableId);
+	        treeGrid.treeOpenAll(tableId,true);
+		    }
+		    function closeAll(){
+			    var treedata=treeGrid.getDataTreeList(tableId);
+	        treeGrid.treeOpenAll(tableId,false);
+		    }
+		    function reloadData(){
+		    	treeGrid.reload(tableId);
+		    	$('#key').val('');
+		    	//重新绑定工具栏点击事件[绑定方法有瑕疵']
+		    	$('#addBtn').click(add);
+		    	$('#reloadBtn').click(reloadData);
+		    	$('#openAllBtn').click(openAll);
+	    		$('#closeAllBtn').click(closeAll);
+		    }
+		    $('#soBtn').click(query);
+		    $('#key').keydown(function(ev){ if (ev.keyCode == 13) { query(); }});
+		    //查询
+		    function query() {
+		    	var key = $('#key').val();
+		    	var where = {};
+		    	if(key){
+		    		where['hasKey'] = true;
+		    		where['itemNo'] = key;
+		    		where['itemName'] = key;
+                    where['value'] = key;
+		    		where['relaNo'] = key;
+		    		where['description'] = key;
+		    	}else{
+		    		where['hasKey'] = false;
+		    	}
+	        treeGrid.query(tableId,{where:where });
+	        $('#key').val('');
+	        layer.msg('关键字['+key+"]查询结果...", {time: 3000});
+	   	  }
+			});
+		</script>
+  </body>
+</html>

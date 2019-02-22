@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>时间轴 | Mine &amp; Nook</title>
+
+		<!-- meta -->
+		<meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+	    <!-- css -->
+		<link rel="stylesheet" href="lib/bootstrap/3.3.2/bootstrap.min.css">
+		<!--<link href="https://unpkg.com/ionicons@4.4.1/dist/css/ionicons.min.css" rel="stylesheet">-->
+		<link href="https://cdn.staticfile.org/ionicons/4.4.1/css/ionicons.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/pace.css">
+	    <link rel="stylesheet" href="css/custom.css">
+	    <!-- 时间线 -->
+ 		<link rel="stylesheet" href="lib/timeline/timeline.css">
+  		<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/font-awesome/4.6.0/css/font-awesome.min.css">
+	    <!-- js -->
+	    <script src="js/cute-title.js"></script>
+	    <script src="js/jquery-2.1.3.min.js"></script>
+	    <script src="lib/bootstrap/3.3.2/bootstrap.min.js"></script>
+	    <script src="js/pace.min.js"></script>
+	    <script src="js/modernizr.custom.js"></script>
+	    <!--回到顶部-->
+	    <link rel="stylesheet" href="lib/to-top/to-top.css" media="all">
+  		<script src="lib/to-top/to-top.js"></script>
+	</head>
+
+	<body>
+		<div class="container">	
+			<header id="site-header">
+				<div class="row">
+					<div class="col-md-4 col-sm-5 col-xs-8">
+						<div class="logo">
+							<h1><a href="index.html"><b>Mine</b> &amp; Nook</a></h1>
+						</div>
+					</div><!-- col-md-4 -->
+					<div class="col-md-8 col-sm-7 col-xs-4">
+						<nav class="main-nav" role="navigation">
+							<div class="navbar-header">
+  								<button type="button" id="trigger-overlay" class="navbar-toggle">
+    								<span class="ion-ios-menu"></span>
+  								</button>
+							</div>
+							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  								<ul class="nav navbar-nav navbar-right">
+    								<li class="cl-effect-11"><a href="index.html" data-hover="首页" title="首页">首页</a></li>
+    								<li class="cl-effect-11"><a href="timeline.html" data-hover="时间轴" title="时间轴">时间轴</a></li>
+    								<li class="cl-effect-11"><a href="unfinish.html" data-hover="实验室" title="Ye's Nook">实验室</a></li>
+    								<li class="cl-effect-11"><a href="about-me.html" data-hover="关于" title="关于">关于</a></li>
+  								</ul>
+							</div><!-- /.navbar-collapse -->
+						</nav>
+						<div id="header-search-box">
+							<a id="search-menu" href="#"><span id="search-icon" class="icon ion-md-search"></span></a>
+							<div id="search-form" class="search-form">
+								<form role="search" method="get" id="searchform" action="#">
+									<input type="search" placeholder="搜索..." required>
+									<button type="submit"><span class="ion-ios-search"></span></button>
+								</form>				
+							</div>
+						</div>
+					</div><!-- col-md-8 -->
+				</div>
+			</header>
+		</div>
+
+		<div class="content-body">
+			<div class="container">
+				<div class="row">
+					<main class="col-md-12">
+			<div class=" ">
+                <div class="timeline">
+					<span class="timeline-label">
+                        <a href="#" class="btn btn-default" title="时间轴视图">
+                      	  <i class="fa fa-fw fa-fire"></i>
+                        </a>
+					</span>
+                    <div class="timeline-item timeline-item-left">
+                        <div class="timeline-point timeline-point-default">
+                            <i class="fa fa-circle"></i>
+                        </div>
+                        <div class="timeline-event timeline-event-default">
+                            <div class="timeline-heading ">
+                                <h4>目前共计 50 篇日志。 <span class="shake">(゜-゜)つロ 干杯~</span></h4>
+                            </div>
+                            <div class="timeline-body">
+                                <p>("▔□▔)/:报告！确认存活[<span id="since">0.0</span>]</p>
+                            </div>
+                            <div class="timeline-footer">
+                                <p class="text-right">2018-11-01</p>
+                            </div>
+                        </div>
+                    </div>
+					<span class="timeline-label">
+                        <span class="label label-primary">2018</span>
+                    </span>
+                    <div class="timeline-item timeline-item-arrow-sm">
+                        <div class="timeline-point timeline-point-blank"></div>
+                        <div class="timeline-event timeline-event-default">
+                            <div class="timeline-body">
+                                <p> 
+                                	<a class="timeline-fz16" href="#">java内部类，静态内部类内部类，静态内部类内部类，静态内部类内部类，静态内部类内部类，静态内部类</a>
+                                </p>
+                            </div>
+                            <div class="timeline-footer">
+                            	<p class="timeline-fz12 text-right">2018-11-11</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item timeline-item-arrow-sm">
+                        <div class="timeline-point timeline-point-blank"></div>
+                        <div class="timeline-event timeline-event-default">
+                            <div class="timeline-body">
+                                <p> 
+                                	<a class="timeline-fz16" href="#">java内部类，静态内部类内部类，静态内部类内部类，静态内部类内部类，静态内部类内部类，静态内部类</a>
+                                </p>
+                            </div>
+                            <div class="timeline-footer">
+                            	<p class="timeline-fz12 text-right">2018-11-11</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item timeline-item-arrow-sm">
+                        <div class="timeline-point timeline-point-blank"></div>
+                        <div class="timeline-event timeline-event-default">
+                            <div class="timeline-body">
+                                <p> 
+                                	<a class="timeline-fz16" href="#">java内部类，静态内部类内部类，静态内部类内部类，静态内部类内部类，静态内部类内部类，静态内部类</a>
+                                </p>
+                            </div>
+                            <div class="timeline-footer">
+                            	<p class="timeline-fz12 text-right">2018-11-11</p>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="timeline-label">
+                        <span class="label label-primary">go</span>
+                    </span>
+                    <span class="timeline-label xx-one">
+                    	<div class="btn-group ">
+	                        <a href="#" class="btn btn-default" title="">
+	                            2018
+	                        </a>
+	                         <a href="#" class="btn btn-default" title="">
+	                            2019
+	                        </a>
+	                        <a href="#" class="btn btn-default" title="">
+	                            2020
+	                        </a>
+                    	</div>
+					</span>
+                </div>
+            </div>
+					</main>
+				</div>
+			</div>
+		</div>
+		<footer id="site-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="beian">
+							<a href="http://www.miitbeian.gov.cn" target="_blank">京ICP备18052530号</a>
+							<span> | </span> 
+							<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=14010802080176" target="_blank">晋公网安备 14010802080176号</a>
+						</div>
+						<div class="copyright">
+							<span class="upyun">
+								<a href="https://www.upyun.com/" target="_blank" ><img src="img/upyun_logo2.png" style="height:28px;"></a>
+							</span>
+							<span class="info">
+								<a href="https://yebukong.com" target="_blank" title="叶不空's 博客站点">叶不空</a>
+								<span>&copy;2018 Mine &amp; Nook</span>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- Mobile Menu -->
+		<div id = 'mobile-menu' class="overlay overlay-hugeinc">
+			<button type="button" class="overlay-close"><span class="ion-ios-close"></span></button>
+			<nav>
+				<ul>
+					<li><a href="index.html"  title="首页">首页</a></li>
+					<li><a href="timeline.html" title="时间轴">时间轴</a></li>
+					<li><a href="unfinish.html" title="实验室">实验室</a></li>
+					<li><a href="about-me.html" title="关于">关于</a></li>
+				</ul>
+			</nav>
+		</div>
+		<script src="js/script.js"></script>
+		<script> 
+			$(function(){
+				var beginTime =new Date("2018/11/01").getTime(); 
+				$("#since").text(_getSinceTimeStr(beginTime));
+				setInterval(function(){
+					$("#since").text(_getSinceTimeStr(beginTime));
+				}, 1000);
+			});
+		</script>
+	</body>
+</html>

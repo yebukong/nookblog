@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>关于我 | Mine &amp; Nook</title>
+		<!-- meta -->
+		<meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+
+	    <!-- css -->
+		<link rel="stylesheet" href="lib/bootstrap/3.3.2/bootstrap.min.css">
+		<!--<link href="https://unpkg.com/ionicons@4.4.1/dist/css/ionicons.min.css" rel="stylesheet">-->
+		<link href="https://cdn.staticfile.org/ionicons/4.4.1/css/ionicons.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/pace.css">
+	    <link rel="stylesheet" href="css/custom.css">
+
+	    <!-- js -->
+	    <script src="js/cute-click.js"></script>
+	    <script src="js/cute-title.js"></script>
+	    <script src="js/jquery-2.1.3.min.js"></script>
+	    <script src="lib/bootstrap/3.3.2/bootstrap.min.js"></script>
+	    <script src="js/pace.min.js"></script>
+	    <script src="js/modernizr.custom.js"></script>
+	</head>
+
+	<body id='about'>
+		<div class="container">	
+			<header id="site-header">
+				<div class="row">
+					<div class="col-md-4 col-sm-5 col-xs-8">
+						<div class="logo">
+							<h1><a href="index.html"><b>Mine</b> &amp; Nook</a></h1>
+						</div>
+					</div><!-- col-md-4 -->
+					<div class="col-md-8 col-sm-7 col-xs-4">
+						<nav class="main-nav" role="navigation">
+							<div class="navbar-header">
+  								<button type="button" id="trigger-overlay" class="navbar-toggle">
+    								<span class="ion-ios-menu"></span>
+  								</button>
+							</div>
+							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  								<ul class="nav navbar-nav navbar-right">
+    								<li class="cl-effect-11"><a href="index.html" data-hover="首页" title="首页">首页</a></li>
+    								<li class="cl-effect-11"><a href="timeline.html" data-hover="时间轴" title="时间轴">时间轴</a></li>
+    								<li class="cl-effect-11"><a href="unfinish.html" data-hover="实验室" title="Ye's Nook">实验室</a></li>
+    								<li class="cl-effect-11"><a href="about-me.html" data-hover="关于" title="关于">关于</a></li>
+  								</ul>
+							</div><!-- /.navbar-collapse -->
+						</nav>
+						<div id="header-search-box">
+							<a id="search-menu" href="#"><span id="search-icon" class="icon ion-md-search"></span></a>
+							<div id="search-form" class="search-form">
+								<form role="search" method="get" id="searchform" action="#">
+									<input type="search" placeholder="搜索..." required>
+									<button type="submit"><span class="ion-ios-search"></span></button>
+								</form>				
+							</div>
+						</div>
+					</div><!-- col-md-8 -->
+				</div>
+			</header>
+		</div>
+
+		<div class="content-body">
+			<div class="container">
+				<div class="row">
+					<main class="col-md-12">
+						<h1 class="page-title">About</h1>
+						<article class="post">
+							<div class="entry-content clearfix">
+								<figure class="img-responsive-center">
+									<img class="img-responsive" src="img/me-half.jpg" alt="Developer Image">
+								</figure>
+								<div class="row">
+									<div class="col-md-7">
+										<p><strong>关于我</strong></p>
+										<p> 
+											17年普通本科毕业，专业软件工程<br>
+											主修JAVA，会点前端<br>
+											典型程序猿
+										</p>
+										<!--<p class="about-copyright">
+										<strong>版权申明</strong><br>
+										本站文章除特别注明外，皆为原创。<br>
+										本站文章均可转载，但需保留本站相应的文章链接。<br>
+										本站内容若有侵犯您的权益，请立即联系我删除。
+										</p>-->
+									</div>
+									<div class="col-md-5">
+										<p><strong>关于本站</strong></p>
+										<p>
+											服务器：OpenResty+Tomcat<br>
+											数据库：MySQL<br>
+											后端：SpringBoot+FreeMarker<br>
+											文章由FreeMarker配合Editor.md完成静态化<br>
+											博客不久后会开源...
+										</p>
+									</div>
+								</div>
+								<div class="height-40px"></div>
+                                <h3 class="title text-center" id = 'chakhsu' >留言板</h3>
+								<div id="gitalk-container"></div>
+								<div class="height-40px"></div>
+								<h3 class="title text-center">找到我</h3>
+								<ul class="social">
+									<li class="link-15px"><a href="mailto:yebukong@qq.com" target="_blank"><span class="ion-ios-mail"></span></a></li>
+									<li class="link-20px"><a href="https://github.com/yebukong" target="_blank"><span class="ion-logo-octocat"></span></a></li>
+									<li class="link-15px"><a href="https://gitee.com/yebukong" target="_blank"><span class="ion-ios-planet"></span></a></li>
+								</ul>
+							</div>
+								
+						</article>
+					</main>
+				</div>
+			</div>
+		</div>
+		<footer id="site-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="beian">
+							<a href="http://www.miitbeian.gov.cn" target="_blank">京ICP备18052530号</a>
+							<span> | </span> 
+							<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=14010802080176" target="_blank">晋公网安备 14010802080176号</a>
+						</div>
+						<div class="copyright">
+							<span class="upyun">
+								<a href="https://www.upyun.com/" target="_blank" ><img src="img/upyun_logo2.png" style="height:28px;"></a>
+							</span>
+							<span class="info">
+								<a href="https://yebukong.com" target="_blank" title="叶不空's 博客站点">叶不空</a>
+								<span>&copy;2018 Mine &amp; Nook</span>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- Mobile Menu -->
+		<div id = 'mobile-menu' class="overlay overlay-hugeinc">
+			<button type="button" class="overlay-close"><span class="ion-ios-close"></span></button>
+			<nav>
+				<ul>
+					<li><a href="index.html"  title="首页">首页</a></li>
+					<li><a href="timeline.html" title="时间轴">时间轴</a></li>
+					<li><a href="unfinish.html" title="实验室">实验室</a></li>
+					<li><a href="about-me.html" title="关于">关于</a></li>
+				</ul>
+			</nav>
+		</div>
+		<script src="js/script.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+ 		<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+ 		<script type="text/javascript">
+ 			$(function(){
+ 				var gitalk = new Gitalk({ // gitalk的主要参数 
+		        	clientID: '5fce814af4a96922ad62', 
+		        	clientSecret: '43eff047498483fe052a62953833c33c34702711', 
+		        	repo: 'TestBlogTlak', 
+		        	owner: 'yebukong',
+		        	admin: ['yebukong'],
+		        	id:'about-me' }
+                    );
+		        gitalk.render('gitalk-container');
+                chakhsu(document.getElementById('chakhsu'));
+ 			});
+ 		</script>
+		<script type="text/javascript">
+            var chakhsu = function(r) {
+                function t() {  return b[Math.floor(Math.random() * b.length)] }
+
+                function e() {  return String.fromCharCode(94 * Math.random() + 33) }
+
+                function n(r) {
+                    for(var n = document.createDocumentFragment(), i = 0; r > i; i++) {
+                        var l = document.createElement("span");
+                        l.textContent = e(), l.style.color = t(), n.appendChild(l)
+                    }
+                    return n
+                }
+
+                function i() {
+                    var t = o[c.skillI];
+                    c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
+                }
+                var l = "",
+                    o = ["留言板:-)","吐槽一下吧"].map(function(r) {  return r + ""  }),
+                    a = 2, g = 1, s = 5, d = 75,
+                    b = ["rgb(110,64,170)", "rgb(150,61,179)", "rgb(191,60,175)", "rgb(228,65,157)", "rgb(254,75,131)", "rgb(255,94,99)", "rgb(255,120,71)", "rgb(251,150,51)", "rgb(226,183,47)", "rgb(198,214,60)", "rgb(175,240,91)", "rgb(127,246,88)", "rgb(82,246,103)", "rgb(48,239,130)", "rgb(29,223,163)", "rgb(26,199,194)", "rgb(35,171,216)", "rgb(54,140,225)", "rgb(76,110,219)", "rgb(96,84,200)"],
+                    c = {
+                        text: "",
+                        prefixP: -s,
+                        skillI: 0,
+                        skillP: 0,
+                        direction: "forward",
+                        delay: a,
+                        step: g
+                    };
+                i()
+            };
+		</script>
+	</body>
+</html>

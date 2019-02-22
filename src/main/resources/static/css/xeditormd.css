@@ -1,0 +1,33 @@
+@charset "utf-8";
+@import url(../lib/editor-md/css/editormd.min.css);
+.editormd-menu > li > a > i{
+	font-size: 14px!important;
+}
+.editormd-code-toolbar select{
+	width: auto!important;
+	height:auto!important;
+	display: inline-block;
+}
+.editormd-code-block-dialog{
+	max-height: 100%!important;
+}
+
+.x-editormd{
+	color: #666;
+	-webkit-border-radius: 5px;
+	border-radius: 5px; 
+	border-width:0px;
+	margin-bottom:0px;
+}
+.editormd-dialog-container .editormd-form .number-input{
+	font-family:"Microsoft YaHei", "微软雅黑", "Hiragino Sans GB", STXihei, "华文细黑", STHeiti, RobotoDraft, Roboto, "Helvetica Neue", Helvetica, Tahoma, "Droid Sans", "wenquanyi micro hei", FreeSans, Arimo, Arial, SimSun, "宋体", Heiti, "黑体", sans-serif;
+	font-size:12px;
+}
+.editormd-preview li{
+	/*消除layui影响*/
+	list-style: inherit;
+}
+
+hr.editormd-page-break {
+  height:1px;border:none;border-top:1px dashed #000;}
+}

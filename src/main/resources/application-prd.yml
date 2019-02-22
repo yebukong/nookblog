@@ -1,0 +1,73 @@
+#spring MSQL数据库
+spring:
+  devtools:
+    restart:
+      enabled: true
+  # H2 DATABASE CONFIG
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    #进行该配置后，每次启动程序，程序都会运行sql文件，对数据库的结构进行操作。
+    schema: classpath:/db/schema-mysql.sql
+    #进行该配置后，每次启动程序，程序都会运行sql文件，对数据库的数据操作。[前提是schema定义必须存在，且有sql语句(不一定是ddl)]
+    data: classpath:/db/data-mysql.sql
+    url: jdbc:mysql://localhost:3306/minenook?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: mysql12580
+    platform: mysql
+    sql-script-encoding: utf-8
+    continue-on-error: false
+    #是否初始化DDL,DML always为始终执行初始化，embedded只初始化内存数据库（默认值）,如h2等，never为不执行初始化。
+    initialization-mode: never
+    driver-class-name: com.mysql.jdbc.Driver
+    data-password: root
+    data-username: root
+    schema-password: root
+    schema-username: root
+  freemarker:
+    request-context-attribute: req  #req访问request
+    suffix: .ftl  #后缀名
+    content-type: text/html
+    enabled: true
+    cache: false #缓存配置
+    template-loader-path: classpath:/templates/ #模板加载路径 按需配置
+    charset: UTF-8 #编码格式
+    settings:
+      number_format: '0.##'   #数字格式化，无小数点
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: pers.mine.nookblog.entity
+  typeEnumsPackage: pers.mine.nookblog.entity.enums
+  global-config:
+
+    # 数据库相关配置
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: ID_WORKER
+      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY: 非null和"" 判断
+      field-strategy: not_null
+      #驼峰下划线转换
+      column-underline: true
+      #数据库大写小写转换
+      capital-mode: false
+      #逻辑删除配置
+      logic-delete-value: INVALID
+      logic-not-delete-value: VALID
+      db-type: mysql
+    #刷新mapper 调试神器
+    refresh: false
+  # 原生配置
+  configuration:
+    map-underscore-to-camel-case: false
+    cache-enabled: false
+mine-info:
+  userName: 临时用户
+  userID: minenook
+  password: A6A6ED6D88F078A196A898769940DA2F
+gitalkConfig:
+  clientID: 5fce814af4a96922ad62
+  clientSecret: d2c2eeb6986835ec3b81ffe97a1c493c6b18fc85
+  repo: NookBlogTlak
+  owner: yebukong
+  admin: yebukong

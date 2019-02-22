@@ -1,0 +1,38 @@
+{
+    "msg": "有异常？",
+    "code": 0,
+    "data": [
+        {"id":"113", "pId":0,  "name":"植物(自定义图标)","lay_icon_open":"./images/treeTable_open.png","lay_icon_close":"./images/treeTable_close.png"},
+        {"id":"114", "pId":"113",  "name":"大叶榕(自定义图标)","lay_icon":"./images/date.png"},
+        {"id":"112", "pId":null,  "name":"动物(默认单选)","lay_is_radio":true},
+        {"id":"115", "pId":"112",  "name":"大笨象"},
+        {"id":"1", "pId":null,  "name":"水果"},
+        {"id":"101", "pId":"1","name":"苹果","lay_is_open":false},
+        {"id":"102", "pId":"1", "name":"香蕉"},
+        {"id":"103", "pId":"1", "name":"梨"},
+        {"id":"104", "pId":"101", "name":"红富士苹果"},
+        {"id":"105", "pId":"101", "name":"红星苹果"},
+        {"id":"106", "pId":"101", "name":"嘎拉"},
+        {"id":"107", "pId":"101", "name":"桑萨"},
+        {"id":"108", "pId":"102", "name":"千层蕉（禁止多选）","lay_che_disabled":true},
+        {"id":"109", "pId":"102", "name":"仙人蕉","lay_is_checked":true},
+        {"id":"110", "pId":"102", "name":"吕宋蕉(禁止单选)","lay_is_checked":true,"lay_rad_disabled":true},
+        {"id":"111", "pId":"1", "name":"大西瓜","lay_is_open":false},
+
+        {"id":"1000", "pId":"111", "name":"大西瓜[1000]"},
+        {"id":"1001", "pId":"111", "name":"大西瓜[1001]"},
+        {"id":"1002", "pId":"111", "name":"大西瓜[1002]"},
+        {"id":"1003", "pId":"111", "name":"大西瓜[1003]"},
+        {"id":"1004", "pId":"111", "name":"大西瓜[1004]"},
+        {"id":"1005", "pId":"111", "name":"大西瓜[1005]"},
+        {"id":"1006", "pId":"111", "name":"大西瓜[1006]"},
+        {"id":"1007", "pId":"111", "name":"大西瓜[1007]"},
+        {"id":"1008", "pId":"111", "name":"大西瓜[1008]"},
+        {"id":"1009", "pId":"111", "name":"大西瓜[1009]"},
+        {"id":"1010", "pId":"111", "name":"大西瓜[1010]"}
+
+    ],
+    "count": 924,
+    "is": false,
+    "tip": "操作成功！"
+}
