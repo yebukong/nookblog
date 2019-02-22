@@ -27,3 +27,5 @@ nookblog 是一款基于SpringBoot开发的博客发布系统。
 ## 开源协议
 
 [MIT](LICENSE)
+
+ :alien: 
