@@ -71,7 +71,7 @@ page={"path":"./"}
                                 </div>
                             </header>
                             <div class="entry-content clearfix">
-                                <p>${article.brief!""}...</p>
+                                <p>${article.brief!""}</p>
                                 <div class="read-more cl-effect-14">
                                     <a href="./article/${article.id}.html" class="more-link">继续阅读 <span
                                             class="meta-nav">→</span></a>
@@ -144,7 +144,7 @@ page={"path":"./"}
             </div>
         </header>
         <div class="entry-content clearfix">
-            <p>{{d.o.brief}}...</p>
+            <p>{{d.o.brief}}</p>
             <div class="read-more cl-effect-14">
                 <a href="./article/{{d.o.id}}.html" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
             </div>
