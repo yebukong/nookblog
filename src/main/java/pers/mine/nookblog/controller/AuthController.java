@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pers.mine.nookblog.entity.CMSUser;
+import pers.mine.nookblog.entity.Code;
+import pers.mine.nookblog.service.ICodeService;
 import pers.mine.nookblog.utils.MD5Util;
 import pers.mine.nookblog.utils.StringX;
 import pers.mine.nookblog.utils.WebKit;
@@ -25,7 +27,8 @@ import java.util.Objects;
 @Controller
 @RequestMapping()
 public class AuthController  extends ApiController {
-
+    @Autowired
+    private ICodeService codeService;
     @Autowired
     private CMSUser deUser;
     @PostMapping(value ="/auth",produces = "application/json;charset=UTF-8")
@@ -34,8 +37,12 @@ public class AuthController  extends ApiController {
         if(!Objects.isNull(user) && !Objects.isNull(deUser)){
             String userid = StringX.nvl(user.getUserID(),"");
             String password = StringX.nvl(user.getPassword(),"");
-
-            String md5Pw = MD5Util.entcryptMD5HexWithSalt(password,userid+"peixiaxia",128);
+            Code authSaltSuffixCode = codeService.getCodeItem("SysConfig", "AuthSaltSuffix");
+            String authSaltSuffix = "";
+            if(authSaltSuffixCode!=null){
+                authSaltSuffix = StringX.nvl(authSaltSuffixCode.getValue(), "");
+            }
+            String md5Pw = MD5Util.entcryptMD5HexWithSalt(password,userid+authSaltSuffix,128);
             if(userid.equalsIgnoreCase(deUser.getUserID()) && md5Pw.equals(deUser.getPassword())){
                 user.setUserName(deUser.getUserName());
                 request.getSession(true).setAttribute(CMSUser.SESSION_NAME,user);

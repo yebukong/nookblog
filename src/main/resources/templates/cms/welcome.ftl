@@ -103,7 +103,7 @@
                             <td>0.8.0</td></tr>
                         <tr>
                             <th>CMS地址</th>
-                            <td>https://www.yebukong.com/MineCMS</td></tr>
+                            <td>https://www.yebukong.com/minecms</td></tr>
                         <tr>
                             <th>操作系统</th>
                             <td>${osName}</td></tr>
