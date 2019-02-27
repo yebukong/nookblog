@@ -63,7 +63,7 @@
 											数据库：MySQL<br>
 											后端：SpringBoot+FreeMarker<br>
 											文章由FreeMarker配合Editor.md完成静态化<br>
-											博客项目地址： <a target="_blank" href="https://github.com/yebukong/nookblog" title="GitHub"><u >Github</u></a> | <a target="_blank" href="https://gitee.com/yebukong/nookblog"  title="码云"><u>Gitee</u></a>
+											博客持续优化中： <a target="_blank" href="https://github.com/yebukong/nookblog" title="GitHub"><u >Github</u></a> | <a target="_blank" href="https://gitee.com/yebukong/nookblog"  title="码云"><u>Gitee</u></a>
 										</p>
 									</div>
 								</div>
