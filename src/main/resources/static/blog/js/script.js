@@ -155,10 +155,17 @@ if ( typeof define === 'function' && define.amd ) {
 			toggleOverlay();
 	});
 })();
-function _getJinrishici(maxTime){
-	if(typeof maxTime == 'undefined'){
-		maxTime = 3;
-	}
+function _getJinrishici(reload){
+    if (window.localStorage && !reload) {
+        //如果本地存在未过期(三分钟)缓存诗词，直接展示
+        var curTime = new Date().getTime();
+        var time = localStorage.getItem("jinrishici_time");
+        if((time -  curTime) < 1000*60){
+            var data = localStorage.getItem("jinrishici_data");
+            showDate(JSON.parse(data));
+            return;
+        }
+    }
 	$.ajax({
 	  url: 'https://v2.jinrishici.com/one.json',
 	  xhrFields: {
@@ -166,42 +173,61 @@ function _getJinrishici(maxTime){
 	  },
 	  success: function (result, status) {
 	    if(result.warning){
+            $(".jinrishici-origin").css('display','none');
+            $(".jinrishici-msg").css('display','block');
             $(".jinrishici-msg").text("接口异常："+result.warning);
             return;
         }
 	    if(result.status=="success"){
-	        if(result.data.origin.content.length<=10){
-	    		$(".jinrishici-title").text(result.data.origin.title);
-	    		$(".jinrishici-title").attr("title","百度搜索"+"《"+result.data.origin.title+"》");
-	    		$(".jinrishici-author").text("["+result.data.origin.dynasty+"]·"+result.data.origin.author);
-	    		var content = "";
-	    		Array.prototype.forEach.call(result.data.origin.content,function(e){ 
-	    			var linC = e.replace(result.data.content,"<b class='jinrishici-mark'>"+result.data.content+"</b>");
-						content+="<div >"+linC+"</div>";
-				});
-	    		$(".jinrishici-origin-content").html(content);
-	    		$(".jinrishici-origin").css('display','block');
-	    		$(".jinrishici-msg").css('display','none');
-	    		
-	    		$(".jinrishici-title").click(function(){
-	    			window.open("http://www.baidu.com/s?wd="+result.data.origin.title +" "+result.data.origin.author); 
-	    		});
-	    	}else{
-	    		if(maxTime>1){
-	    			$(".jinrishici-msg").text("数据有误，尝试重新获取中...0_0");
-                    setTimeout(function(){ _getJinrishici(maxTime-1); }, 3000);
-	    		}else{
-	    			$(".jinrishici-msg").text("数据获取异常0_0");
-	    		}
-	    	}
+            showDate(result);
+            if(window.localStorage){
+                localStorage.setItem("jinrishici_time",new Date().getTime()+'');
+                localStorage.setItem("jinrishici_data",JSON.stringify(result));
+            }
 	    }else{
+            $(".jinrishici-origin").css('display','none');
+            $(".jinrishici-msg").css('display','block');
 	    	$(".jinrishici-msg").text("数据获取异常=￣ω￣=");
 	    }
 	  },
 	  error:function(){
+        $(".jinrishici-origin").css('display','none');
+        $(".jinrishici-msg").css('display','block');
 	  	$(".jinrishici-msg").text("数据获取异常_(:3」∠)_");
+
 	  }
 	});
+
+
+    function showDate(result) {
+        $(".jinrishici-title").text(result.data.origin.title);
+        $(".jinrishici-title").attr("title","百度搜索"+"《"+result.data.origin.title+"》");
+        $(".jinrishici-author").text("["+result.data.origin.dynasty+"]·"+result.data.origin.author);
+        var content = "";
+        var limit = 10;//超10句截断
+        var len = result.data.origin.content.length>limit?limit:result.data.origin.content.length;
+        var words = 0;
+        for(var i=0;i<len;i++){
+            var linC = result.data.origin.content[i];
+            words += linC.length;
+            linC = linC.replace(result.data.content,"<b class='jinrishici-mark' title='话说这句很有灵魂！(‘▽′)ψ'>"+result.data.content+"</b>");
+            content+="<div >"+linC+"</div>";
+            if(words>200){//超200字截断
+                break;
+            }
+        }
+
+        if(limit<result.data.origin.content.length || words > 200){
+            content+="<div title='诗词显示不完整，完整请点击标题'><small><i>[注:诗句过长，已截断……]</i></small></div>";
+        }
+        $(".jinrishici-origin-content").html(content);
+        $(".jinrishici-origin").css('display','block');
+        $(".jinrishici-msg").css('display','none');
+
+        $(".jinrishici-title").click(function(){
+            window.open("http://www.baidu.com/s?wd="+result.data.origin.title +" "+result.data.origin.author);
+        });
+    }
 }
 
 function _getSinceTimeStr(beginTime){

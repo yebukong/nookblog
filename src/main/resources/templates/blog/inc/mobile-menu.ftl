@@ -1,4 +1,4 @@
-<div id = 'mobile-menu' class="overlay overlay-hugeinc">
+<div id = 'mobile-menu' class="overlay overlay-hugeinc" ">
     <button type="button" class="overlay-close"><span class="ion-ios-close"></span></button>
     <nav>
         <ul>

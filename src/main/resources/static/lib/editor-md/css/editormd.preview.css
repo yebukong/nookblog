@@ -3141,7 +3141,6 @@
   border-top: 1px solid #ddd;
   background: none;
 }
-
 .editormd-preview-container code, .editormd-html-preview code {
   border: 1px solid #ddd;
   background: #f6f6f6;
@@ -3149,6 +3148,10 @@
   border-radius: 3px;
   font-size: 14px;
 }
+.editormd-preview-container .prettyprint code, .editormd-html-preview .prettyprint code{
+  font-size: 14px;
+}
+
 .editormd-preview-container pre, .editormd-html-preview pre {
   border: 1px solid #ddd;
   background: #f6f6f6;
@@ -3158,6 +3161,13 @@
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
+}
+.editormd-preview-container pre.prettyprint, .editormd-html-preview pre.prettyprint{
+  background: #f6f6f6;
+}
+
+.editormd-preview-container .prettyprint pre, .editormd-html-preview .prettyprint pre{
+
 }
 .editormd-preview-container pre code, .editormd-html-preview pre code {
   padding: 0;
@@ -3315,6 +3325,7 @@ ol.linenums {
   margin-top: 0;
   margin-bottom: 0;
 }
+
 /* IE indents via margin-left */
 li.L0,
 li.L1,

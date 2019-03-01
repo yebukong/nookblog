@@ -57,14 +57,15 @@ licensesInfo={"author":"叶不空"
                     </header>
                     <div class="entry-content clearfix">
                         <div id="test-editormd-view">
-					               <textarea style="display:none;" name="test-editormd-markdown-doc">${article.content}
+					               <textarea style="display:none;" id="editormd-view-textarea"></textarea>
+                        </div>
+                        <pre id="editormd-view-code">
+${article.content}
 
 ------------
 > 本文由 [${licensesInfo.author}](${licensesInfo.authorUrl} "${licensesInfo.author}") 创作，采用 [知识共享署名 4.0 国际许可协议](https://creativecommons.org/licenses/by/4.0/ "知识共享署名 4.0 国际许可协议")进行许可,转载请附上链接！
 > 本文链接: [${licensesInfo.articleBaseUrl}${article.id}.html](${licensesInfo.articleBaseUrl}${article.id}.htmll "${article.title}")
-                                   </textarea>
-                        </div>
-
+                        </pre>
                     </div>
                 </article>
             </main>
@@ -113,6 +114,10 @@ licensesInfo={"author":"叶不空"
 <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
 <script type="text/javascript">
     $(function () {
+        var codeObj = $('#editormd-view-code');
+        codeObj.hide();
+        var textObj = $('#editormd-view-textarea');
+        textObj.val(codeObj.text());
         //重定义emojis地址
         editormd.emoji = {
             path: "../lib/editor-md/plugins/emoji-dialog/emojis/",

@@ -159,10 +159,10 @@ page={"path":"./"}
         var layer = layui.layer;
         var flow = layui.flow;
         var laytpl = layui.laytpl;
-        _getJinrishici(3);//今日诗词
+        _getJinrishici();//今日诗词
         $(".jinrishici-reload").click(function () {
             $(".jinrishici-msg").text("获取中...");
-            _getJinrishici(3);
+            _getJinrishici(true);
         });
 
         var archiveTypeMap = {${articleTypeMap}};

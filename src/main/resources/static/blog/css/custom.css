@@ -100,6 +100,11 @@ p {
 #single #custom-toc-container{
 	padding: 0;
 }
+#single #editormd-view-code{
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
 .page-title {
 	text-align: center;
 }
@@ -651,6 +656,12 @@ figure {
 	z-index: 100;
 }
 
+#mobile-menu button.overlay-close {
+    font-size: 40px;
+    top: 20px;
+    right: 70px;
+}
+
 .overlay-hugeinc.open .ion-ios-close-empty {
     color: #000;
     font-size: 50px;
@@ -985,3 +996,4 @@ figure {
     color: #F45A8D;/*#f45a8d bili粉 #2F4056*/
     display: inline-block;
 }
+
