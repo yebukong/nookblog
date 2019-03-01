@@ -3310,6 +3310,11 @@ ol.linenums {
   margin-bottom: 0;
 }
 
+.markdown-body ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 /* IE indents via margin-left */
 li.L0,
 li.L1,

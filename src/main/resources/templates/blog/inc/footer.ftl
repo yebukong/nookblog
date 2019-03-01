@@ -12,7 +12,7 @@
                 <div class="beian">
                     <span onclick="_jumpBeianPage(this)" base64url="aHR0cDovL3d3dy5taWl0YmVpYW4uZ292LmNu" style="cursor:pointer" title="我可没干坏事啊o_o?">京ICP备18052530号</span>
                     <span> | </span>
-                    <span onclick="_jumpBeianPage(this)" base64url="aHR0cDovL3d3dy5iZWlhbi5nb3YuY24vcG9ydGFsL3JlZ2lzdGVyU3lzdGVtSW5mbz9yZWNvcmRjb2RlPTE0MDEwODAyMDgwMTc2" style="cursor:pointer" title="有快递-_-?">晋公网安备 14010802080176号</span>
+                    <span onclick="_jumpBeianPage(this)" base64url="aHR0cDovL3d3dy5iZWlhbi5nb3YuY24vcG9ydGFsL3JlY29yZFF1ZXJ5" style="cursor:pointer" title="有快递-_-?">晋公网安备 14010802080176号</span>
                 </div>
                 <div class="copyright">
                     <span class="upyun">
