@@ -160,9 +160,9 @@ function _getJinrishici(reload){
         //如果本地存在未过期(三分钟)缓存诗词，直接展示
         var curTime = new Date().getTime();
         var time = localStorage.getItem("jinrishici_time");
-        if((time -  curTime) < 1000*60){
+        if((curTime - time) < 1000*60){
             var data = localStorage.getItem("jinrishici_data");
-            showDate(JSON.parse(data));
+            showData(JSON.parse(data));
             return;
         }
     }
@@ -172,14 +172,9 @@ function _getJinrishici(reload){
 	     withCredentials: true
 	  },
 	  success: function (result, status) {
-	    if(result.warning){
-            $(".jinrishici-origin").css('display','none');
-            $(".jinrishici-msg").css('display','block');
-            $(".jinrishici-msg").text("接口异常："+result.warning);
-            return;
-        }
+
 	    if(result.status=="success"){
-            showDate(result);
+            showData(result);
             if(window.localStorage){
                 localStorage.setItem("jinrishici_time",new Date().getTime()+'');
                 localStorage.setItem("jinrishici_data",JSON.stringify(result));
@@ -199,7 +194,7 @@ function _getJinrishici(reload){
 	});
 
 
-    function showDate(result) {
+    function showData(result) {
         $(".jinrishici-title").text(result.data.origin.title);
         $(".jinrishici-title").attr("title","百度搜索"+"《"+result.data.origin.title+"》");
         $(".jinrishici-author").text("["+result.data.origin.dynasty+"]·"+result.data.origin.author);
@@ -220,10 +215,15 @@ function _getJinrishici(reload){
         if(limit<result.data.origin.content.length || words > 200){
             content+="<div title='诗词显示不完整，完整请点击标题'><small><i>[注:诗句过长，已截断……]</i></small></div>";
         }
+
         $(".jinrishici-origin-content").html(content);
         $(".jinrishici-origin").css('display','block');
-        $(".jinrishici-msg").css('display','none');
-
+        if(result.warning){
+            $(".jinrishici-msg").css('display','block');
+            $(".jinrishici-msg").text("接口异常："+result.warning);
+        }else{
+            $(".jinrishici-msg").css('display','none');
+        }
         $(".jinrishici-title").click(function(){
             window.open("http://www.baidu.com/s?wd="+result.data.origin.title +" "+result.data.origin.author);
         });
