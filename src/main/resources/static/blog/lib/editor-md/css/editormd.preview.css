@@ -2808,6 +2808,11 @@
   padding-left: 2em;
 }
 
+.markdown-body ul.markdown-toc-list,
+.markdown-body ol.markdown-toc-list {
+  padding-left: 20px;
+}
+
 .markdown-body ul ul,
 .markdown-body ul ol,
 .markdown-body ol ol,

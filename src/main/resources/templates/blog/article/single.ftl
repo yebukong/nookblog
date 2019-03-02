@@ -83,7 +83,7 @@ ${article.content}
                     <ul>
                              <#list articleTags as tagname>
                                  <li>
-                                     <a href="#">${tagname}</a>
+                                     <a href="../unfinish.html">${tagname}</a>
                                  </li>
                              </#list>
                     </ul>

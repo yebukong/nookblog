@@ -106,7 +106,7 @@ page={"path":"./"}
                             <#assign articleTypeMap = articleTypeMap + ",">
                         </#if>
                         <li>
-                            <a href="#">${type.itemName}</a>
+                            <a href="./unfinish.html">${type.itemName}</a>
                         </li>
                     </#list>
                     </ul>
@@ -117,7 +117,7 @@ page={"path":"./"}
                     <ul>
                     <#list articleTags as tag>
                         <li>
-                            <a href="#">${tag.itemName}</a>
+                            <a href="./unfinish.html">${tag.itemName}</a>
                         </li>
                     </#list>
                     </ul>
