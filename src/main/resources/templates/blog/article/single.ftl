@@ -21,7 +21,7 @@ licensesInfo={"author":"叶不空"
     <!--<link href="https://unpkg.com/ionicons@4.4.1/dist/css/ionicons.min.css" rel="stylesheet">-->
     <link href="https://cdn.staticfile.org/ionicons/4.4.1/css/ionicons.min.css" rel="stylesheet">
     <!--<link rel="stylesheet" href="css/ionicons.min.css">-->
-    <link rel="stylesheet" href="../css/pace.css">
+    <#--<link rel="stylesheet" href="../css/pace.css">-->
     <link rel="stylesheet" href="../css/custom.css">
     <!--md-->
     <link rel="stylesheet" href="../lib/editor-md/css/editormd.preview.css"/>
@@ -29,7 +29,7 @@ licensesInfo={"author":"叶不空"
     <script src="../js/cute-title.js"></script>
     <script src="../js/jquery-2.1.3.min.js"></script>
     <script src="../lib/bootstrap/3.3.2/bootstrap.min.js"></script>
-    <script src="../js/pace.min.js"></script>
+    <#--<script src="../js/pace.min.js"></script>-->
     <script src="../js/modernizr.custom.js"></script>
     <!--回到顶部-->
     <link rel="stylesheet" href="../lib/to-top/to-top.css" media="all">

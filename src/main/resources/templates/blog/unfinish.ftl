@@ -13,13 +13,13 @@ page={"path":"./"}
     <link rel="stylesheet" href="lib/bootstrap/3.3.2/bootstrap.min.css">
     <!--<link href="https://unpkg.com/ionicons@4.4.1/dist/css/ionicons.min.css" rel="stylesheet">-->
     <link href="https://cdn.staticfile.org/ionicons/4.4.1/css/ionicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/pace.css">
+    <#--<link rel="stylesheet" href="css/pace.css">-->
     <link rel="stylesheet" href="css/custom.css">
     <!-- js -->
     <script src="js/cute-title.js"></script>
     <script src="js/jquery-2.1.3.min.js"></script>
     <script src="lib/bootstrap/3.3.2/bootstrap.min.js"></script>
-    <script src="js/pace.min.js"></script>
+    <#--<script src="js/pace.min.js"></script>-->
     <script src="js/modernizr.custom.js"></script>
 </head>
 

@@ -18,7 +18,7 @@ page={"path":"./"}
     <!-- css -->
     <link rel="stylesheet" href="lib/bootstrap/3.3.2/bootstrap.min.css">
 
-    <link rel="stylesheet" href="css/pace.css">
+    <#--<link rel="stylesheet" href="css/pace.css">-->
     <link rel="stylesheet" href="css/custom.css">
 
     <!--<link rel="stylesheet" href="css/ionicons.min.css">-->
@@ -31,7 +31,7 @@ page={"path":"./"}
     <script src="js/cute-title.js"></script>
     <script src="js/jquery-2.1.3.min.js"></script>
     <script src="lib/bootstrap/3.3.2/bootstrap.min.js"></script>
-    <script src="js/pace.min.js"></script>
+    <#--<script src="js/pace.min.js"></script>-->
     <script src="js/modernizr.custom.js"></script>
     <!--控制台Log-->
     <script src="js/Mine&Nook-log.js"></script>
