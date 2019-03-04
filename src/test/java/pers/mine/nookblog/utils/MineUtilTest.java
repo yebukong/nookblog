@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author yebukong
- * @description TODO
+ * @description
  * @since 2018-10-30 1:06
  */
 public class MineUtilTest {

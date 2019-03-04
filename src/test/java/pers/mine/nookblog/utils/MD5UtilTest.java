@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author yebukong
- * @description TODO
+ * @description
  * @since 2019-01-16 20:16
  */
 public class MD5UtilTest {
