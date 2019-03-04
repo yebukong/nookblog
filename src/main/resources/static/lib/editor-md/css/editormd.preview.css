@@ -2809,7 +2809,9 @@
 }
 
 .markdown-body ul.markdown-toc-list,
-.markdown-body ol.markdown-toc-list {
+.markdown-body ol.markdown-toc-list,
+.markdown-body ul.markdown-toc-list ul,
+.markdown-body ol.markdown-toc-list, ol{
   padding-left: 20px;
 }
 
@@ -3136,7 +3138,9 @@
 .editormd-preview-container p code, .editormd-html-preview p code {
   margin-left: 5px;
   margin-right: 4px;
+  font-size: 80%;
 }
+
 .editormd-preview-container abbr, .editormd-html-preview abbr {
   background: #ffffdd;
 }
