@@ -53,7 +53,7 @@ helloDate = "2018/11/01"
                             </div>
                             <div class="timeline-event timeline-event-default">
                                 <div class="timeline-heading ">
-                                    <h4>目前共计 ${count!"0"} 篇日志。 <span class="shake">(゜-゜)つロ 干杯~</span></h4>
+                                    <h4>目前共计 ${count!"0"} 篇文章。 <span class="shake">(゜-゜)つロ 干杯~</span></h4>
                                 </div>
                                 <div class="timeline-body">
                                     <p>("▔□▔)/:报告！确认存活[<span id="since">0.0</span>]</p>
@@ -64,10 +64,17 @@ helloDate = "2018/11/01"
                             </div>
                         </div>
                         <span class="timeline-label">
-								<span class="label label-primary">${year!""}</span>
-							</span>
+							<span class="label label-primary">${year!""}</span>
+						</span>
 							<#if articles?? && (articles?size > 0) >
+                                <#assign  currMonth=""/>
                                 <#list articles as article>
+                                 <#if currMonth!=(article.created?string('MM'))>
+                                  <span class="timeline-label">
+								   <span class="label label-primary">${article.created?string('MM')}</span>
+							     </span>
+                                 </#if>
+                                <#assign  currMonth=(article.created?string('MM'))/>
 								<div class="timeline-item timeline-item-arrow-sm">
                                     <div class="timeline-point timeline-point-blank"></div>
                                     <div class="timeline-event timeline-event-default">
