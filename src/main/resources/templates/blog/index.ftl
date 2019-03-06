@@ -196,7 +196,7 @@ page={"path":"./"}
                             next('', false);
                         }
                     });
-                }, 2000);
+                }, 100);
                 function resolveData(data,next) {
                     var oneArticleTpl = $('#oneArticle').text();
                     if(data.code!='0'){
