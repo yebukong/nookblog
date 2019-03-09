@@ -137,7 +137,7 @@ page={"path":"./"}
                 <a href="./article/{{d.o.id}}.html">{{d.o.title}}</a>
             </h1>
             <div class="entry-meta">
-                <span class="post-date"><a href="#"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">{{d.o.modifiedFmt}}</time></a></span>
+                <span class="post-date"><a href="#"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">{{d.o.createdFmt}}</time></a></span>
                 <span class="post-category"><a href="#">{{d.archiveType[d.o.type]}}</a></span>
                 <span class="post-param"><a href="#">{{d.o.address}}</a></span>
                 <span class="comments-link"><a href="#">~{{d.o.wordCount}}字</a></span>
@@ -209,6 +209,7 @@ page={"path":"./"}
                     for (var i = 0,len = data.data.records.length; i < len; i++) {
                         var single = data.data.records[i];
                         single["modifiedFmt"] = single.modified.substr(0,10).split('-').join("/");
+                        single["createdFmt"] = single.created.substr(0,10).split('-').join("/");
                         console.log(JSON.stringify(single));
                         var targetC = laytpl(oneArticleTpl).render({
                             o: single,
