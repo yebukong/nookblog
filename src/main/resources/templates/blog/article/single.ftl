@@ -64,7 +64,7 @@ ${article.content}
 
 ------------
 > 本文由 [${licensesInfo.author}](${licensesInfo.authorUrl} "${licensesInfo.author}") 创作，采用 [知识共享署名 4.0 国际许可协议](https://creativecommons.org/licenses/by/4.0/ "知识共享署名 4.0 国际许可协议")进行许可,转载请附上链接！
-> 本文链接: [${licensesInfo.articleBaseUrl}${article.id}.html](${licensesInfo.articleBaseUrl}${article.id}.htmll "${article.title}")
+> 本文链接: [${licensesInfo.articleBaseUrl}${article.id}.html](${licensesInfo.articleBaseUrl}${article.id}.html "${article.title}")
                         </pre>
                     </div>
                 </article>
