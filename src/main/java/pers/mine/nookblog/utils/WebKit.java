@@ -128,6 +128,7 @@ public class WebKit {
 
     public static String getCityByIP(String ip){
         String aliIPUrl = "http://ip.taobao.com/service/getIpInfo.php?ip="+ip;
+        String result ="unknown";
         try {
             SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
             RestTemplate restTemplate = new RestTemplate(requestFactory);
@@ -135,11 +136,12 @@ public class WebKit {
             ObjectMapper mapper = new ObjectMapper();
             Map ipMap=mapper.readValue(resultJson, Map.class);
             if("0".equals(ipMap.get("code")+"")){
-               return  StringX.nvl((String)((Map)ipMap.get("data")).get("city"),"unknown");
+                result =   StringX.nvl((String)((Map)ipMap.get("data")).get("city"),"unknown");
             }
         } catch (Exception e) {
            log.warn("[解析IP发生异常:ip="+ip+"] "+e.getMessage());
         }
-        return  "unknown";
+        log.info("[解析IP:"+ip+"] -> "+result);
+        return  result;
     }
 }
