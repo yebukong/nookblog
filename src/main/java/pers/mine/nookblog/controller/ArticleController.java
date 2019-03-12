@@ -121,7 +121,13 @@ public class ArticleController extends ApiController {
         }
         String ip = WebKit.ipAddr(request);
         one.setIp(ip);//设置ip
-        one.setAddress(WebKit.getCityByIP(ip));
+
+        String cityName = WebKit.getCityByIP(ip);
+        String address = StringX.nvl(one.getAddress(), "unknown");
+        if(!"unknown".equals(cityName)){
+            address = cityName;
+        }
+        one.setAddress(address);
         //转义md内容左右尖括号
         String content = one.getContent();
         if(!StringX.isEmpty(content)){
