@@ -125,7 +125,8 @@ ${article.content}
         };
         var testEditormdView = editormd.markdownToHTML("test-editormd-view", {
             //htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
-            htmlDecode: "style,script,iframe",  // you can filter tags decode
+            htmlDecode       : "style,script,iframe|on*",   // you can filter tags decode
+            previewCodeHighlight : true,
             toc: true,
             tocm: true,    // Using [TOCM]
             tocContainer: "#custom-toc-container", // 自定义 ToC 容器层

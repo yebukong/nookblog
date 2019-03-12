@@ -11,7 +11,7 @@ page={"path":"./"}
     <meta name="author" content="叶不空,yebukong">
     <meta name="copyright" content="叶不空,yebukong">
     <meta name="Keywords" Content="叶不空,yebukong,Mine&Nook,MineNook,MineBlog,NookBlog">
-    <meta name="description" Content="欢迎来到叶不空's博客站点[Mine&Nook]">
+    <meta name="description" Content="欢迎来到叶不空's博客站点[yebukong.com]，这里是我记录技术和生活点滴的地方─=≡Σ((( つ•̀ω•́)つ">
 
     <link rel="shortcut icon" href="./img/happy.ico" type="image/x-icon"/>
     <link rel="canonical" href="https://yebukong.com/">

@@ -184,7 +184,7 @@
         laydate.render(createdDateInitValue);
         laydate.render(modifiedDateInitValue);
         form.on('submit(push)', function(formData){
-            console.log(form.val());
+            //console.log(form.val());
             var data = MineUtil.deepCopy(formData.field);
             data['md'] = oneEditormd.getMarkdown();
             data['html'] = oneEditormd.getHTML();
