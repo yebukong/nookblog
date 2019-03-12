@@ -76,6 +76,12 @@ public class ArticleController extends ApiController {
         String ip = WebKit.ipAddr(request);
         one.setIp(ip);//设置ip
         one.setAddress(WebKit.getCityByIP(ip));
+        //转义md内容左右尖括号
+        String content = one.getContent();
+        if(!StringX.isEmpty(content)){
+            content = content.replace("<", "&lt;").replace(">", "&gt;");
+        }
+        one.setContent(content);
         one.setBrief(StringX.nvl(one.getBrief(), "摘要未填写[Orz]"));//TODO 摘要生成
         one.setStatus("INVALID");//新增默认未发布
         boolean result = service.save(one);
@@ -116,6 +122,12 @@ public class ArticleController extends ApiController {
         String ip = WebKit.ipAddr(request);
         one.setIp(ip);//设置ip
         one.setAddress(WebKit.getCityByIP(ip));
+        //转义md内容左右尖括号
+        String content = one.getContent();
+        if(!StringX.isEmpty(content)){
+            content = content.replace("<", "&lt;").replace(">", "&gt;");
+        }
+        one.setContent(content);
         one.setStatus("INVALID");//更新默认未发布
         boolean result = service.updateById(one);
         return result ? R.ok(one) : R.failed("修改出错");
