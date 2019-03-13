@@ -356,7 +356,7 @@ var MineUtil = (function(){
     if(options.url && !$.isEmptyObject(options.params)){
     	options.url = options.url + '?'+_parseParams(options.params);
     	var xx = _getParams(options.url);
-    	console.log(xx);
+    	//console.log(xx);
     }
     if(options.result && options.resultFor && $(options.resultFor)){
     	$(options.resultFor).attr('x-layer-result',null);//清除旧值

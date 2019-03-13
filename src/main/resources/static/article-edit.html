@@ -73,6 +73,9 @@
                             <div class="layui-input-inline">
                                 <input class="layui-input" autocomplete="off" name="modified" id="modified" >
                             </div>
+                            <div>
+                                <input  type="hidden" name="address" id="address">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,7 +83,7 @@
         </div>
         <div class="layui-form-item article-btn">
             <button class="layui-btn layui-btn-primary layui-btn-radius" lay-submit="" lay-filter="push">保存文章</button>
-            <span class="layui-btn layui-btn-primary layui-btn-radius">存为草稿</span>
+            <!--<span class="layui-btn layui-btn-primary layui-btn-radius">存为草稿</span>-->
         </div>
     </form>
 </div>
@@ -233,6 +236,7 @@
                             }
                             createdDateInitValue['value'] = resultData.data.editData.create;
                             modifiedDateInitValue['value'] =resultData.data.editData.modified;
+                            $('#address').val(resultData.data.editData.address);
                             form.val("oneForm", resultData.data.editData);
                         }
                         laydate.render(createdDateInitValue);
