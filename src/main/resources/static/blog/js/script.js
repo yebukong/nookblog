@@ -160,7 +160,7 @@ function _getJinrishici(reload){
         //如果本地存在未过期(三分钟)缓存诗词，直接展示
         var curTime = new Date().getTime();
         var time = localStorage.getItem("jinrishici_time");
-        if((curTime - time) < 1000*60){
+        if((curTime - time) < 1000*60*3){
             var data = localStorage.getItem("jinrishici_data");
             showData(JSON.parse(data));
             return;
@@ -205,7 +205,7 @@ function _getJinrishici(reload){
         for(var i=0;i<len;i++){
             var linC = result.data.origin.content[i];
             words += linC.length;
-            linC = linC.replace(result.data.content,"<b class='jinrishici-mark' title='话说这句很有灵魂！(‘▽′)ψ'>"+result.data.content+"</b>");
+            linC = linC.replace(result.data.content,"<b class='jinrishici-mark' title='灵魂诗句，Get！(‘▽′)ψ'>"+result.data.content+"</b>");
             content+="<div >"+linC+"</div>";
             if(words>200){//超200字截断
                 break;
