@@ -34,7 +34,7 @@ page={"path":"./"}
     <#--<script src="js/pace.min.js"></script>-->
     <script src="js/modernizr.custom.js"></script>
     <!--控制台Log-->
-    <script src="js/Mine&Nook-log.js"></script>
+    <script src="js/mine-log.js"></script>
     <!--回到顶部-->
     <link rel="stylesheet" href="lib/to-top/to-top.css" media="all">
     <script src="lib/to-top/to-top.js"></script>
