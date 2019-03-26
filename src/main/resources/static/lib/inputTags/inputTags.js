@@ -99,6 +99,7 @@ layui.define(['jquery','layer'],function(exports){
                 }
                 options.done && typeof options.done === 'function' && options.done($val);
                 options.elem.val('');
+                return false;
             }
         })
     };
