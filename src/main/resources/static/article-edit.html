@@ -113,10 +113,15 @@
             ,laydate = layui.laydate
             ,laytpl = layui.laytpl
             ,inputTags = layui.inputTags;
-        var oneInputTags = inputTags.render({
-            elem:'#inputTags',
-            content: [],
-        });
+        var oneInputTags ;
+        //     inputTags.render({
+        //     elem:'#inputTags',
+        //     content: [],
+        //     aldaBtn: false,//测试按钮
+        //     done: function(value){
+        //         console.log(value);
+        //     }
+        // });
         var createdDateInitValue = { elem:'#created',type: 'datetime',value :null,isInitValue: true};
         var modifiedDateInitValue = { elem:'#modified',type: 'datetime',value :null,isInitValue: true};
         //重定义emojis地址
@@ -194,7 +199,7 @@
             data['content'] = oneEditormd.getMarkdown();
             data['wordCount'] = data['content'] ? data['content'].length : 0;
             data['tags'] = 	 oneInputTags.config.content.join('/');
-            console.log(data);
+            //console.log(data);
             MineUtil.ajax({
                 url: './article/edit'
                 ,type: 'POST'
@@ -229,7 +234,10 @@
                         });
                         if(resultData.data.editData){
                             if(resultData.data.editData.tags){
-                                oneInputTags = inputTags.render({ elem:'#inputTags',content: resultData.data.editData.tags.split("/")});
+                                 oneInputTags = inputTags.render({ elem:'#inputTags',content: resultData.data.editData.tags.split("/")});
+                            }else{
+                                oneInputTags = inputTags.render({ elem:'#inputTags',content: []});
+
                             }
                             if(resultData.data.editData.content){
                                 oneEditormd.setMarkdown(resultData.data.editData.content);

@@ -80,39 +80,28 @@ layui.define(['jquery','layer'],function(exports){
     that.enter()
   };
 
-  // 回车生成标签,回退删除最后一个标签
-  Class.prototype.enter = function(){
-    var that = this
-    ,spans = ''
-    ,options = that.config;
-    options.elem.focus();
-    options.elem.keypress(function(event){  
-      var keynum = (event.keyCode ? event.keyCode : event.which);  
-      if(keynum == '13'){  
-        var $val = options.elem.val().trim();
-        if(!$val) return false;
-        if(options.content.indexOf($val) == -1){
-          options.content.push($val)
-          that.render()
-          spans ='<span><em>'+$val+'</em><button type="button" class="close">×</button></span>';
-          options.elem.before(spans)
-        }
-        options.done && typeof options.done === 'function' && options.done($val);
-        options.elem.val('');
-        return false;
-      }
-      //退格键 backspace
-//    if(keynum == '8'){  
-//      var $val = options.elem.val();
-//      if(!$val){//删除最后一个
-//      	 var $lastSpan = options.elem.prev('span');
-//      	 console.log($lastSpan);
-//      	 $lastSpan.remove();
-//      	  return false;
-//      }
-//    }  
-    })
-  };
+    // 回车生成标签
+    Class.prototype.enter = function(){
+        var that = this
+            ,spans = ''
+            ,options = that.config;
+        options.elem.focus();
+        options.elem.keypress(function(event){
+            var keynum = (event.keyCode ? event.keyCode : event.which);
+            if(keynum == '13'){
+                var $val = options.elem.val().trim();
+                if(!$val) return false;
+                if(options.content.indexOf($val) == -1){
+                    options.content.push($val)
+                    that.render()
+                    spans ='<span><em>'+$val+'</em><button type="button" class="close">×</button></span>';
+                    options.elem.before(spans)
+                }
+                options.done && typeof options.done === 'function' && options.done($val);
+                options.elem.val('');
+            }
+        })
+    };
   
   //事件处理
   Class.prototype.events = function(){
