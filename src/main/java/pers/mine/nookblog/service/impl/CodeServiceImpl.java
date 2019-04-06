@@ -61,4 +61,11 @@ public class CodeServiceImpl extends ServiceImpl<CodeMapper, Code> implements IC
         }
         return result;
     }
+
+
+    @Override
+    public boolean updateStatusById(Code entity) {
+        //接口默认方法的调用
+        return ICodeService.super.updateStatusById(entity);
+    }
 }
