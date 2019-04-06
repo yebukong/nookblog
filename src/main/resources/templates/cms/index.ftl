@@ -116,7 +116,7 @@
 <!-- 中部结束 -->
 <!-- 底部开始 -->
 <div class="footer">
-    <div class="copyright"><a href="http://www.yebukong.com" target="_blank" title="叶不空's 博客站点">叶不空</a> ©2018 Mine &amp;
+    <div class="copyright"><a href="http://www.yebukong.com" target="_blank" title="叶不空's 博客站点">叶不空</a> ©2019 Mine &amp;
         Nook - CMS
     </div>
 </div>
