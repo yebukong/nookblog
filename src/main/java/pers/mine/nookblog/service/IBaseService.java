@@ -15,11 +15,12 @@ import java.util.Date;
 public interface IBaseService<T extends BaseEntity> extends IService<T> {
     /**
      * 更新记录状态位通过Id
+     *
      * @param entity 仅设置id,status即可
      * @return
      */
     default public boolean updateStatusById(T entity) {
-        T trimEntity =(T)ClassUtils.newInstance(ClassUtils.getUserClass(entity));
+        T trimEntity = (T) ClassUtils.newInstance(ClassUtils.getUserClass(entity));
         trimEntity.setId(entity.getId());
         trimEntity.setStatus(entity.getStatus());
         trimEntity.setModified(new Date());
@@ -28,14 +29,16 @@ public interface IBaseService<T extends BaseEntity> extends IService<T> {
 
     /**
      * 更新记录流水号通过旧流水号
+     *
      * @param oldEntity 仅设置旧id即可
      * @param newEntity 仅设置新id即可
      */
-    default public boolean updateIdById(T oldEntity,T newEntity) {
-        T trimEntity =(T)ClassUtils.newInstance(ClassUtils.getUserClass(oldEntity));
+    default public boolean updateIdById(T oldEntity, T newEntity) {
+        T trimEntity = (T) ClassUtils.newInstance(ClassUtils.getUserClass(oldEntity));
         trimEntity.setId(newEntity.getId());
         trimEntity.setModified(new Date());
-        return update(trimEntity,new UpdateWrapper<T>().lambda().eq(T::getId,oldEntity.getId()));
+        return update(trimEntity, new UpdateWrapper<T>().lambda().eq(T::getId, oldEntity.getId()));
+
     }
 
 }
