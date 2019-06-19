@@ -82,7 +82,9 @@
             </div>
         </div>
         <div class="layui-form-item article-btn">
-            <button class="layui-btn layui-btn-primary layui-btn-radius" lay-submit="" lay-filter="push">保存文章</button>
+            <button class="layui-btn layui-btn-primary layui-btn-radius" lay-submit="" lay-filter="push">保存</button>
+            <button class="layui-btn layui-btn-primary layui-btn-radius" lay-submit="" lay-filter="pushAndBack">保存并返回</button>
+
             <!--<span class="layui-btn layui-btn-primary layui-btn-radius">存为草稿</span>-->
         </div>
     </form>
@@ -192,7 +194,12 @@
         laydate.render(createdDateInitValue);
         laydate.render(modifiedDateInitValue);
         form.on('submit(push)', function(formData){
-            //console.log(form.val());
+           return _save(formData,false);
+        });
+        form.on('submit(pushAndBack)', function(formData){
+            return _save(formData,true);
+        });
+        function _save(formData,isBack){
             var data = MineUtil.deepCopy(formData.field);
             data['md'] = oneEditormd.getMarkdown();
             data['html'] = oneEditormd.getHTML();
@@ -209,7 +216,7 @@
                     console.log(JSON.stringify(data)+status);
                     if(data && data.code == 0){
                         layer.msg("操作成功", {icon: 6,time: 800},function () {
-                            if(parent!=self){//返回值传到父页面
+                            if(parent!=self && isBack){//返回值传到父页面
                                 parent.$("#editBtn").attr('x-layer-result','给父页面返回的值');
                                 var index = parent.layer.getFrameIndex(window.name);// 获得frame索引
                                 parent.layer.close(index); //关闭当前frame
@@ -221,8 +228,7 @@
                 }
             });
             return false;
-        });
-
+        }
         function initFromData(){//表单初始化
             MineUtil.ajax({ url: './article/initEditData'
                 ,showDoingMsg:false
