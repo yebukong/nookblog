@@ -27,6 +27,7 @@
 	    <script src="lib/bootstrap/3.3.2/bootstrap.min.js"></script>
 	    <#--<script src="js/pace.min.js"></script>-->
 	    <script src="js/modernizr.custom.js"></script>
+
 	</head>
 	<body id='about'>
         <div class="container" >
@@ -88,6 +89,13 @@
         <#include "./inc/footer.ftl"/>
         <!-- Mobile Menu -->
         <#include "./inc/mobile-menu.ftl"/>
+
+        <!--看板娘相关-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="lib/live2d-widget/waifu.css"/>
+        <script src="lib/live2d-widget/live2d.min.js"></script>
+        <script src="lib/live2d-widget/waifu-tips.js"></script>
+
 		<script src="js/script.js"></script>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
  		<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
@@ -104,7 +112,8 @@
 					body: '${licensesInfo["authorUrl"]}/about-me.html'
 				});
 		        gitalk.render('gitalk-container');
- 			});
+                initWidget("lib/live2d-widget/waifu-tips.json", "https://live2d.fghrsh.net/api");
+            });
  		</script>
         <script type="text/javascript">
             var chakhsu = function(r) {
