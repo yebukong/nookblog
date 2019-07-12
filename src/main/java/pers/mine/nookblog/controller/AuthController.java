@@ -33,7 +33,7 @@ public class AuthController  extends ApiController {
     private CMSUser deUser;
     @PostMapping(value ="/auth",produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public R<String> page(HttpServletRequest request,CMSUser user) {
+    public R<String> auth(HttpServletRequest request,CMSUser user) {
         if(!Objects.isNull(user) && !Objects.isNull(deUser)){
             String userid = StringX.nvl(user.getUserID(),"");
             String password = StringX.nvl(user.getPassword(),"");
