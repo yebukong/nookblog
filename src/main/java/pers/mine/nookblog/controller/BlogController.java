@@ -90,6 +90,7 @@ public class BlogController {
     public R<IPage<Article>> tableData(Page<Article> page) {
         LambdaQueryWrapper<Article> lqw = new QueryWrapper<Article>().lambda();
         //noinspection unchecked
+        //lqw.select(i->true); //所有字段
         lqw.select(Article::getId,
                 Article::getType,
                 Article::getTags,
