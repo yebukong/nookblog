@@ -151,7 +151,7 @@ public class ArticleController extends ApiController {
             try {
                 Article article = service.getById(id);
                 if (article == null) {
-                    return R.ok("id:[" + id + "]不合法");
+                    return R.failed("id:[" + id + "]不合法");
                 }
                 article.setStatus("VALID");
                 service.updateStatusById(article);
