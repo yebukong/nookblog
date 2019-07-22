@@ -34,9 +34,9 @@ public class FreeMarkerUtil {
             checkAndMkdirs(f.getParent());
             writer = new FileWriter(f);
             temp.process(dataModel, writer);
-            log.info(String.format("在路径%s下，静态化摸板%s:", targetFilePath, templateName));
+            log.info(String.format("静态化摸板[ %s ]到路径[ %s ]成功", templateName, targetFilePath));
         } catch (Exception e) {
-            log.warn(String.format("在路径%s下，静态化摸板%s发生异常:", targetFilePath, templateName), e);
+            log.warn(String.format("静态化摸板[ %s ]到路径[ %s ]发生异常:", templateName, targetFilePath), e);
         } finally {
             try {
                 if (writer != null) {
@@ -44,7 +44,7 @@ public class FreeMarkerUtil {
                     writer.close();
                 }
             } catch (Exception e) {
-                log.warn(String.format("在路径%s下，静态化摸板%s发生异常:", targetFilePath, templateName), e);
+                log.warn(String.format("静态化摸板[ %s ]到路径[ %s ]发生异常:", templateName, targetFilePath), e);
             }
         }
     }
@@ -102,13 +102,14 @@ public class FreeMarkerUtil {
 
     /**
      * 清空指定目录
+     *
      * @param path
      * @return 操作结果
      */
     public static boolean deleteDir(String path) {
         File file = new File(path);
         if (!file.exists()) {//判断是否待删除目录是否存在
-            log.warn("The dir["+path+"] are not exists!");
+            log.warn("The dir[" + path + "] are not exists!");
             return false;
         }
 
