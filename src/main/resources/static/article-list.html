@@ -55,7 +55,8 @@
 			<a class="layui-btn  layui-btn-sm" target="_blank" href="./blog/about-me.html">关于</a>
 		</div>
 		<div class="layui-btn-container layui-btn-group">
-			<button class="layui-btn layui-btn-sm " lay-event="createBlogPageHtml" title="静态化首页/时间轴/实验室/关于页">标题页静态化</button>
+            <button class="layui-btn layui-btn-sm " lay-event="reCreateAll" title="重新发布所有已发布文章">重新发布</button>
+            <button class="layui-btn layui-btn-sm " lay-event="createBlogPageHtml" title="静态化首页/时间轴/实验室/关于页">标题页静态化</button>
             <button class="layui-btn layui-btn-sm " lay-event="initBlog" title="博客初始化">博客初始化</button>
 			<button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="cleanBlog" title="静态目录清空">静态目录清空</button>
 		</div>
@@ -154,6 +155,8 @@
                     break;
                 case 'createHtml': createHtml(obj);
                     break;
+                case 'reCreateAll': reCreateAll();
+                    break;
                 case 'createBlogPageHtml': createBlogPageHtml();
                     break;
                 case 'initBlog': initBlog();
@@ -228,6 +231,27 @@
                     }
                 }
             });
+        }
+
+        function reCreateAll(){
+            layer.confirm("确认重新发布所有已发布文章？", {icon: 3, title:'提示'},
+                function (index) {//确定回调
+                    MineUtil.ajax({
+                        url: './article/reCreateAll'
+                        ,type: 'POST'
+                        ,success: function(data,status){
+                            if(data && data.code == 0){
+                                layer.alert(data.msg);
+                            }else{
+                                layer.alert("操作失败");
+                            }
+                        }
+                    });
+                    layer.close(index);
+                },function (index) {//取消回调
+                    layer.close(index);
+                }
+            );
         }
 
         function createBlogPageHtml(){

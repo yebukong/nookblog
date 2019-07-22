@@ -78,7 +78,7 @@ public class ArticleController extends ApiController {
         one.setAddress(WebKit.getCityByIP(ip));
         //转义md内容左右尖括号
         String content = one.getContent();
-        if(!StringX.isEmpty(content)){
+        if (!StringX.isEmpty(content)) {
             content = content.replace("<", "&lt;").replace(">", "&gt;");
         }
         one.setContent(content);
@@ -124,13 +124,13 @@ public class ArticleController extends ApiController {
 
         String cityName = WebKit.getCityByIP(ip);
         String address = StringX.nvl(one.getAddress(), "unknown");
-        if(!"unknown".equals(cityName)){
+        if (!"unknown".equals(cityName)) {
             address = cityName;
         }
         one.setAddress(address);
         //转义md内容左右尖括号
         String content = one.getContent();
-        if(!StringX.isEmpty(content)){
+        if (!StringX.isEmpty(content)) {
             content = content.replace("<", "&lt;").replace(">", "&gt;");
         }
         one.setContent(content);
@@ -164,6 +164,34 @@ public class ArticleController extends ApiController {
         return R.ok("").setMsg("总数:" + ids.length + "项,成功:" + successNum + "项");
     }
 
+    @PostMapping("/reCreateAll")
+    public R<String> reCreateAll() {
+        //查询所有已发布文章
+        List<Article> aList = service.list(
+                        new QueryWrapper<Article>().lambda()
+                                .eq(Article::getStatus, "VALID")
+                                .orderByAsc(Article::getId));
+        if (aList == null || aList.isEmpty()) {
+            return R.failed("未找到已发布文章!");
+        }
+        Code blogDirPathCode = codeService.getCodeItem(Code.SYS_CONFIG, "BlogDirPath");
+        String aPath = blogDirPathCode.getValue() + File.separator + "article";
+        int successNum = 0;
+        for (Article article : aList) {
+            try {
+                blogPageService.updatePageFile(aPath, article.getId() + "");
+                successNum++;
+            } catch (Exception e) {
+                log.warn("id:" + article.getId() + "文章重新发布异常", e);
+            }
+        }
+        return R.ok("").setMsg("总数:" + aList.size() + "项,成功:" + successNum + "项");
+    }
+
+
+    /**
+     * 生成博客标题页（首页，时间轴，实验室，关于）
+     */
     @PostMapping("/createBlogPageHtml")
     public R<String> createBlogPageHtml() {
         String[] ids = {IBlogPageService.INDEX_BLOG_PAGE_ID, IBlogPageService.TIME_LINE_BLOG_PAGE_ID, IBlogPageService.UNFINISH_BLOG_PAGE_ID, IBlogPageService.ABOUT_ME_BLOG_PAGE_ID};
@@ -185,39 +213,40 @@ public class ArticleController extends ApiController {
      * 将前端博客页复制到指定路径【注:旧数据需手动删除】
      */
     @PostMapping("/initBlog")
-    public R<String> initBlog(){
+    public R<String> initBlog() {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         Resource[] resources = null;
         try {
             resources = resolver.getResources("static/blog/**");
         } catch (IOException e) {
-            log.warn("初始化博客：发生异常",e );
-            return R.failed("初始化博客：发生异常,"+e.getMessage());
+            log.warn("初始化博客：发生异常", e);
+            return R.failed("初始化博客：发生异常," + e.getMessage());
         }
         Code blogDirPathCode = codeService.getCodeItem(Code.SYS_CONFIG, "BlogDirPath");
         String aPath = blogDirPathCode.getValue();
         int successFile = 0;
         for (Resource resource : resources) {
             try {
-                FreeMarkerUtil.copyResourceToFile(resource, aPath,"/static/blog/");
+                FreeMarkerUtil.copyResourceToFile(resource, aPath, "/static/blog/");
                 successFile++;
             } catch (Exception e) {
-                log.warn("复制资源"+resource.getDescription()+"发生异常："+e.getMessage());
+                log.warn("复制资源" + resource.getDescription() + "发生异常：" + e.getMessage());
             }
         }
-        return R.ok("").setMsg("初始化博客：共复制" + resources.length + "个文件到["+aPath+"]路径,成功"+successFile+"个");
+        return R.ok("").setMsg("初始化博客：共复制" + resources.length + "个文件到[" + aPath + "]路径,成功" + successFile + "个");
     }
+
     @PostMapping("/cleanBlog")
-    public R<String> cleanBlog(){
+    public R<String> cleanBlog() {
         Code blogDirPathCode = codeService.getCodeItem(Code.SYS_CONFIG, "BlogDirPath");
         String aPath = blogDirPathCode.getValue();
-        if(!StringX.isEmpty(aPath)){
-            FreeMarkerUtil.deleteDir(aPath+File.separator+"css");
-            FreeMarkerUtil.deleteDir(aPath+File.separator+"img");
-            FreeMarkerUtil.deleteDir(aPath+File.separator+"js");
-            FreeMarkerUtil.deleteDir(aPath+File.separator+"lib");
+        if (!StringX.isEmpty(aPath)) {
+            FreeMarkerUtil.deleteDir(aPath + File.separator + "css");
+            FreeMarkerUtil.deleteDir(aPath + File.separator + "img");
+            FreeMarkerUtil.deleteDir(aPath + File.separator + "js");
+            FreeMarkerUtil.deleteDir(aPath + File.separator + "lib");
             return R.ok("").setMsg("清空静态目录成功(排除文章发布目录)");
-        }else{
+        } else {
             return R.failed("清空静态目录失败!");
         }
     }
