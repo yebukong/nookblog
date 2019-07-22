@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="beian">
-                    <span onclick="_jumpBeianPage(this)" base64url="aHR0cDovL3d3dy5taWl0YmVpYW4uZ292LmNu" style="cursor:pointer" title="我可没干坏事啊o_o?">京ICP备18052530号</span>
+                    <span onclick="_jumpBeianPage(this)" base64url="aHR0cDovL2JlaWFuLm1paXQuZ292LmNuL3B1Ymxpc2gvcXVlcnkvaW5kZXhGaXJzdC5hY3Rpb24=" style="cursor:pointer" title="我可没干坏事啊o_o?">京ICP备18052530号</span>
                     <span> | </span>
                     <span onclick="_jumpBeianPage(this)" base64url="aHR0cDovL3d3dy5iZWlhbi5nb3YuY24vcG9ydGFsL3JlY29yZFF1ZXJ5" style="cursor:pointer" title="有快递-_-?">晋公网安备 14010802080176号</span>
                 </div>
