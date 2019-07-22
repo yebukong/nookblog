@@ -39,47 +39,59 @@ public class BlogController {
     @Autowired
     private IBlogPageService blogPageService;
 
-    /**重定向首页*/
+    /**
+     * 重定向首页
+     */
     @GetMapping(value = {"/"})
     public String blogIndex() {
-        return  "redirect:/blog/index.html";
+        return "redirect:/blog/index.html";
     }
 
-    /**首页*/
+    /**
+     * 首页
+     */
     @GetMapping(value = {"/index.html"})
     public String blogIndex(Model model) {
         model.addAllAttributes(blogPageService.getIndexPageAttribute());
         return "blog/index";
     }
 
-    /**时间轴 */
+    /**
+     * 时间轴
+     */
     @GetMapping(value = {"/timeline.html"})
-    public String blogtimeline(@RequestParam(value ="year",required = false)String year, Model model) {
+    public String blogtimeline(@RequestParam(value = "year", required = false) String year, Model model) {
         model.addAllAttributes(blogPageService.getTimeLinePageAttribute(year));
         return "blog/timeline";
     }
 
-    /** 关于我 */
+    /**
+     * 关于我
+     */
     @GetMapping(value = {"/about-me.html"})
     public String about_me(Model model) {
         model.addAllAttributes(blogPageService.getAboutMeAttribute());
         return "blog/about-me";
     }
 
-    /** 未完成页面 */
+    /**
+     * 未完成页面
+     */
     @GetMapping(value = {"/unfinish.html"})
     public String unfinish(Model model) {
         model.addAllAttributes(blogPageService.getUnfinishAttribute());
         return "blog/unfinish";
     }
 
-    /**文章页*/
+    /**
+     * 文章页
+     */
     @GetMapping(value = {"/article/{id}.html"})
     public String single(@PathVariable("id") Long id, Model model) {
         try {
             model.addAllAttributes(blogPageService.getSingleArticlePageAttribute(id));
         } catch (Exception e) {
-            log.warn("获取文章: "+id+" 参数发生异常",e);
+            log.warn("获取文章: " + id + " 参数发生异常", e);
             return "error/500";
         }
         return "blog/article/single";
@@ -90,7 +102,8 @@ public class BlogController {
     public R<IPage<Article>> tableData(Page<Article> page) {
         LambdaQueryWrapper<Article> lqw = new QueryWrapper<Article>().lambda();
         //noinspection unchecked
-        //lqw.select(i->true); //所有字段
+        //筛选方式查询所有字段，但必须 调用lqw .setEntity(new Article())设置实体类，应该有简洁写法，后续研究
+        //lqw.select(i->true);
         lqw.select(Article::getId,
                 Article::getType,
                 Article::getTags,
