@@ -3,6 +3,8 @@ package pers.mine.nookblog.entity;
 import lombok.Data;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 /**
  * @author yebukong
  * @description 代码表
@@ -10,7 +12,7 @@ import lombok.ToString;
  */
 @Data
 @ToString(callSuper = true)
-public class Code extends BaseEntity{
+public class Code extends BaseEntity implements Serializable {
     /**排序临时列[同一code下代码项聚集]*/
     public static final String TEMP_SORT_COLUMN = "CONCAT_WS('-',IF(LENGTH(relaNo),relaNo,itemNo),RPAD(sortNo,10, '0'))";
     /**项目配置信息*/
