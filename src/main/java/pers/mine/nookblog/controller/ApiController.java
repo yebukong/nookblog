@@ -5,11 +5,13 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.system.ApplicationHome;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.web.bind.annotation.*;
 import pers.mine.nookblog.entity.Article;
 import pers.mine.nookblog.entity.Code;
 import pers.mine.nookblog.service.IArticleService;
@@ -20,6 +22,8 @@ import pers.mine.nookblog.utils.WebKit;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -31,8 +35,16 @@ import java.util.Map;
  * @description 对外api
  * @since 2018-11-05 1:51
  */
+@Slf4j
 @RestController
 @RequestMapping("/api")
 public class ApiController extends com.baomidou.mybatisplus.extension.api.ApiController {
-
+    @GetMapping(value = "/version", produces = "application/json;charset=UTF-8")
+    public R<Map<String,String>> version() throws IOException {
+        ApplicationHome home = new ApplicationHome(getClass());
+        File jarF = home.getSource();
+        Map<String,String> versionMap = new HashMap<String,String>();
+        versionMap.put("appPath", jarF.getAbsolutePath());
+        return R.ok(versionMap);
+    }
 }
