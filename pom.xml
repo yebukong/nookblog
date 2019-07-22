@@ -27,7 +27,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!--时间戳，用于版本号区分-->
+        <!--时间戳，UTC时区，无法修改,用于版本号区分-->
         <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
         <java.version>10</java.version>
         <mybatis-plus-boot-starter.version>3.0.6</mybatis-plus-boot-starter.version>
@@ -117,7 +117,8 @@
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}-${project.version}-${maven.build.timestamp}</finalName>
+        <!--suppress UnresolvedMavenProperty -->
+        <finalName>${project.artifactId}-${project.version}-${current.timestamp}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -131,7 +132,25 @@
                     <target>10</target>
                 </configuration>
             </plugin>
-
+            <!--maven 时间戳 https://www.cnblogs.com/winner-0715/p/8398422.html-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.9.1</version>
+                <executions>
+                    <execution>
+                        <id>timestamp-property</id>
+                        <goals>
+                            <goal>timestamp-property</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <name>current.timestamp</name>
+                    <pattern>yyyyMMddHHmmss</pattern>
+                    <timeZone>GMT+8</timeZone>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -164,6 +183,7 @@
                     </resources>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 </project>
