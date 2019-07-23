@@ -67,6 +67,9 @@ body{
     color: #fff;
     font-size: 16px;
 }
+.login .message span a{
+    color: #fff;
+}
 .login #darkbannerwrap {
     background: url(../images/aiwrap.png);
     width: 18px;
