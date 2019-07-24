@@ -16,7 +16,7 @@ function start()
 		echo "Maybe $appName is running, please check it..."
 	else
 		echo "The $appName is starting..."
-		nohup java -jar ./$appName -XX:+UseG1GC -XX:+HeapDumpOnOutOfMemoryError -Xms512M -Xmx4G > /dev/null 2>&1 &
+		nohup java -jar ./$appName -XX:+UseG1GC -XX:+HeapDumpOnOutOfMemoryError -Xms128M -Xmx512M > /dev/null 2>&1 &
 	fi
 }
 
