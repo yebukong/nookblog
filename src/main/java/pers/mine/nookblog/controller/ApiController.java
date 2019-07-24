@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.system.ApplicationHome;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -39,12 +40,16 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api")
 public class ApiController extends com.baomidou.mybatisplus.extension.api.ApiController {
-    @GetMapping(value = "/version", produces = "application/json;charset=UTF-8")
+    @Autowired
+    private Environment env;
+
+    @GetMapping(value = "/appInfo", produces = "application/json;charset=UTF-8")
     public R<Map<String,String>> version() throws IOException {
         ApplicationHome home = new ApplicationHome(getClass());
         File jarF = home.getSource();
         Map<String,String> versionMap = new HashMap<String,String>();
         versionMap.put("appPath", jarF.getAbsolutePath());
+        versionMap.put("spring.profiles.active", env.getProperty("spring.profiles.active"));
         return R.ok(versionMap);
     }
 }
