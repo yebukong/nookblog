@@ -2,8 +2,6 @@ package pers.mine.nookblog.utils;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * @author yebukong
  * @description

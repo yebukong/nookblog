@@ -1,7 +1,5 @@
 package pers.mine.nookblog.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-import pers.mine.nookblog.entity.Article;
 import pers.mine.nookblog.entity.Code;
 
 import java.util.List;

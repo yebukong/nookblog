@@ -1,6 +1,5 @@
 package pers.mine.nookblog;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -15,8 +14,15 @@ public class B implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String name;
-    public String test(String val){
+
+    public String test(String val) {
         System.out.println(val);
-        return val+"";
+        Integer.toBinaryString(10086);
+        return val + "";
+    }
+
+    public int test123(int i) {
+        i = i + 1;
+        return i;
     }
 }

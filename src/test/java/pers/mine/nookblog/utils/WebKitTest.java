@@ -2,11 +2,8 @@ package pers.mine.nookblog.utils;
 
 import org.junit.Test;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import static org.junit.Assert.*;
 
 /**
  * @author yebukong

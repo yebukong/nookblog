@@ -13,7 +13,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -25,6 +24,7 @@ import java.util.Arrays;
         "pers.mine.nookblog.config",
         "pers.mine.nookblog.controller",
         "pers.mine.nookblog.service",
+        "pers.mine.nookblog.rpc",
         "pers.mine.nookblog.utils",
         "pers.mine.nookblog.entity",
         "pers.mine.nookblog.task"})

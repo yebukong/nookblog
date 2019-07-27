@@ -1,7 +1,6 @@
 package pers.mine.nookblog.utils;
 
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * @author yebukong

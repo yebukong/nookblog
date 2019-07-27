@@ -1,10 +1,8 @@
 package pers.mine.nookblog;
 
 import org.junit.Test;
-import org.junit.runners.Parameterized;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * @author yebukong
