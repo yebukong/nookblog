@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -29,6 +30,7 @@ import java.util.Arrays;
         "pers.mine.nookblog.task"})
 @EnableCaching //开启缓存
 @EnableScheduling //开启定时任务
+@EnableFeignClients(basePackages = { "pers.mine.nookblog.rpc"})
 public class NookblogApplication extends SpringBootServletInitializer {
     protected final static Logger logger = LoggerFactory.getLogger(NookblogApplication.class);
 
