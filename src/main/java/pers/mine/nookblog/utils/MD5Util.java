@@ -1,6 +1,9 @@
 package pers.mine.nookblog.utils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.security.MessageDigest;
+import java.util.Map;
 
 /**
  * @author yebukong
@@ -91,4 +94,27 @@ public class MD5Util {
         }
         return  sbu.toString().toUpperCase();
     }
+
+
+    /**
+     * 来源于百度api文档
+     * http://lbsyun.baidu.com/index.php?title=lbscloud/api/appendix
+     */
+    public static String baiduApiMD5(String md5) {
+        try {
+            java.security.MessageDigest md = java.security.MessageDigest
+                    .getInstance("MD5");
+            byte[] array = md.digest(md5.getBytes());
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < array.length; ++i) {
+                sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100)
+                        .substring(1, 3));
+            }
+            return sb.toString();
+        } catch (java.security.NoSuchAlgorithmException e) {
+        }
+        return null;
+    }
+
+
 }
