@@ -17,6 +17,7 @@ import pers.mine.nookblog.entity.Code;
 import pers.mine.nookblog.service.IArticleService;
 import pers.mine.nookblog.service.IBlogPageService;
 import pers.mine.nookblog.service.ICodeService;
+import pers.mine.nookblog.service.ICommonService;
 import pers.mine.nookblog.utils.FreeMarkerUtil;
 import pers.mine.nookblog.utils.StringX;
 import pers.mine.nookblog.utils.WebKit;
@@ -39,7 +40,8 @@ public class ArticleController extends ApiController {
     private ICodeService codeService;
     @Autowired
     private IBlogPageService blogPageService;
-
+    @Autowired
+    private ICommonService commonService;
 
     @GetMapping(value = "/tableData", produces = "application/json;charset=UTF-8")
     public R<IPage<Article>> tableData(Page<Article> page, Article qOne, boolean hasKey) {
@@ -74,7 +76,7 @@ public class ArticleController extends ApiController {
         }
         String ip = WebKit.ipAddr(request);
         one.setIp(ip);//设置ip
-        one.setAddress(WebKit.getCityByIP(ip));
+        one.setAddress(commonService.getCityByIP(ip));
         //转义md内容左右尖括号
         String content = one.getContent();
         if (!StringX.isEmpty(content)) {
@@ -121,7 +123,7 @@ public class ArticleController extends ApiController {
         String ip = WebKit.ipAddr(request);
         one.setIp(ip);//设置ip
 
-        String cityName = WebKit.getCityByIP(ip);
+        String cityName = commonService.getCityByIP(ip);
         String address = StringX.nvl(one.getAddress(), "unknown");
         if (!"unknown".equals(cityName)) {
             address = cityName;
