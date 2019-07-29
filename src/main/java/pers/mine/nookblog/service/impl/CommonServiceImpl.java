@@ -40,18 +40,22 @@ public class CommonServiceImpl implements ICommonService {
             Code ak = codeService.getCodeItem(IBaiduMapSerivice.CODE_BAIDU_API_CONFIG, "ak");
             Code sk = codeService.getCodeItem(IBaiduMapSerivice.CODE_BAIDU_API_CONFIG, "sk");
             if (ak != null && sk != null) {
+                String akValue = StringX.nvl(ak.getValue(), "");
+                String skValue = StringX.nvl(sk.getValue(), "");
                 Map paramsMap = new LinkedHashMap<String, String>();
                 paramsMap.put("ip", ip);
-                paramsMap.put("ak", ak.getValue());
+                paramsMap.put("ak", akValue);
                 paramsMap.put("coor", "");
-                String wholeStr = new String(IBaiduMapSerivice.API_PATH_LOCATION_IP + "?" + WebKit.parseUrlParams(paramsMap) + sk.getValue());
-                Map<String, Object> ipInfo = baiduMapSerivice.getIpInfo(ip, ak.getValue(), "", MD5Util.baiduApiMD5(URLEncoder.encode(wholeStr, "UTF-8")));
+                String wholeStr = new String(IBaiduMapSerivice.API_PATH_LOCATION_IP + "?" + WebKit.parseUrlParams(paramsMap) + skValue);
+                Map<String, Object> ipInfo = baiduMapSerivice.getIpInfo(ip, akValue, "", MD5Util.baiduApiMD5(URLEncoder.encode(wholeStr, "UTF-8")));
+                log.info("baidu响应:%s",ipInfo);
                 if ("0".equals(ipInfo.get("status") + "")) {
                     result = StringX.nvl((String) ((Map) ipInfo.get("content")).get("address"), "unknown");
                 }
             }
             if ("unknown".equals(result)) {
                 Map ipInfo = taobaoIpServicece.getIpInfo(ip);
+                log.info("taobao响应:%s",ipInfo);
                 if ("0".equals(ipInfo.get("code") + "")) {
                     result = StringX.nvl((String) ((Map) ipInfo.get("data")).get("city"), "unknown");
                 }

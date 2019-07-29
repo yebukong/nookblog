@@ -5,6 +5,7 @@ import feign.Request;
 import feign.Retryer;
 import feign.codec.Decoder;
 import org.springframework.beans.factory.ObjectFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.cloud.openfeign.support.SpringDecoder;
 import org.springframework.context.annotation.Bean;
@@ -42,10 +43,19 @@ public class FeignConfiguration {
         // maxAttempts=5 最多请求次数，包括第一次
         return new Retryer.Default(100, 1000, 3);
     }
-
+    @Value("${mine.feign.loglevel}")
+    private String feignLogLeve;
     @Bean
     Logger.Level feignLoggerLevel() {
-        return Logger.Level.FULL;
+        if("FULL".equals(feignLogLeve)){
+            return Logger.Level.FULL;
+        }else if("HEADERS".equals(feignLogLeve)){
+            return Logger.Level.HEADERS;
+        }else if("BASIC".equals(feignLogLeve)){
+            return Logger.Level.BASIC;
+        }else{
+            return Logger.Level.NONE;
+        }
     }
 
 

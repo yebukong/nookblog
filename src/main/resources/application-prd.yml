@@ -6,7 +6,7 @@ logging:
 spring:
   devtools:
     restart:
-      enabled: true
+      enabled: false
   # H2 DATABASE CONFIG
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
@@ -69,6 +69,9 @@ mine-info:
   userName: 临时用户
   userID: minenook
   password: A94817F73C77ABAACE34273DF0500C2F
+mine:
+  feign:
+    loglevel: HEADERS
 gitalkConfig:
   clientID: 5fce814af4a96922ad62
   clientSecret: d2c2eeb6986835ec3b81ffe97a1c493c6b18fc85
