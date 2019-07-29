@@ -48,20 +48,20 @@ public class CommonServiceImpl implements ICommonService {
                 paramsMap.put("coor", "");
                 String wholeStr = new String(IBaiduMapSerivice.API_PATH_LOCATION_IP + "?" + WebKit.parseUrlParams(paramsMap) + skValue);
                 Map<String, Object> ipInfo = baiduMapSerivice.getIpInfo(ip, akValue, "", MD5Util.baiduApiMD5(URLEncoder.encode(wholeStr, "UTF-8")));
-                log.info("baidu响应:%s",ipInfo);
+                log.info("baidu响应 - {}", ipInfo);
                 if ("0".equals(ipInfo.get("status") + "")) {
                     result = StringX.nvl((String) ((Map) ipInfo.get("content")).get("address"), "unknown");
                 }
             }
             if ("unknown".equals(result)) {
                 Map ipInfo = taobaoIpServicece.getIpInfo(ip);
-                log.info("taobao响应:%s",ipInfo);
+                log.info("taobao响应 - {}", ipInfo);
                 if ("0".equals(ipInfo.get("code") + "")) {
                     result = StringX.nvl((String) ((Map) ipInfo.get("data")).get("city"), "unknown");
                 }
             }
         } catch (Exception e) {
-            log.warn("[解析IP发生异常:ip=" + ip + "] ", e);
+            log.warn("解析IP发生异常:ip={}", ip, e);
         }
         return result;
     }
