@@ -28,18 +28,18 @@ public class AuthHandlerInterceptor implements HandlerInterceptor {
         String uri = req.getRequestURI();
         //System.out.println(uri);
         if (curUser == null || StringX.isEmpty(curUser.getUserName())) {
-            if (WebKit.isAjax(req)||WebKit.acceptExplicitForJson(req)) {//响应json
-                log.info("Auth拦截器:"+req.getRequestURI()+"--> [ajax]");
+            if (WebKit.isAjax(req) || WebKit.acceptExplicitForJson(req)) {//响应json
+                log.info("Auth拦截器: {} --> [ajax]", req.getRequestURI());
                 resp.setContentType("application/json;charset=utf-8");
                 resp.setCharacterEncoding("utf-8");
                 PrintWriter pw = resp.getWriter();
-                pw.write(new ObjectMapper().writeValueAsString( R.failed("非法请求!")));
+                pw.write(new ObjectMapper().writeValueAsString(R.failed("非法请求!")));
                 pw.flush();
                 pw.close();
-            }else{//重定向到登录
-                String paramInfo =WebKit.parseUrlParam("errmsg","请先进行登录");
-                log.info("Auth拦截器:"+req.getRequestURI()+"--> "+req.getContextPath()+"/login?"+paramInfo);
-                resp.sendRedirect(req.getContextPath()+"/login?"+paramInfo);
+            } else {//重定向到登录
+                String paramInfo = WebKit.parseUrlParam("errmsg", "请先进行登录");
+                log.info("Auth拦截器: {} --> {}/login?{}", req.getRequestURI(), req.getContextPath(), paramInfo);
+                resp.sendRedirect(req.getContextPath() + "/login?" + paramInfo);
             }
             return false;
         }

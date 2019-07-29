@@ -152,26 +152,26 @@ public class ArticleController extends ApiController {
             try {
                 Article article = service.getById(id);
                 if (article == null) {
-                    return R.failed("id:[" + id + "]不合法");
+                    return R.failed(String.format("id:[%s]不合法", id));
                 }
                 article.setStatus("VALID");
                 service.updateStatusById(article);
                 blogPageService.updatePageFile(aPath, article.getId() + "");
                 successNum++;
             } catch (Exception e) {
-                log.warn("id:" + id + "文章发布异常", e);
+                log.warn("id:{}文章发布异常", id, e);
             }
         }
-        return R.ok("").setMsg("总数:" + ids.length + "项,成功:" + successNum + "项");
+        return R.ok("").setMsg(String.format("总数: %s 项,成功: %s 项", ids.length, successNum));
     }
 
     @PostMapping("/reCreateAll")
     public R<String> reCreateAll() {
         //查询所有已发布文章
         List<Article> aList = service.list(
-                        new QueryWrapper<Article>().lambda()
-                                .eq(Article::getStatus, "VALID")
-                                .orderByAsc(Article::getId));
+                new QueryWrapper<Article>().lambda()
+                        .eq(Article::getStatus, "VALID")
+                        .orderByAsc(Article::getId));
         if (aList == null || aList.isEmpty()) {
             return R.failed("未找到已发布文章!");
         }
@@ -186,7 +186,7 @@ public class ArticleController extends ApiController {
                 log.warn("id:" + article.getId() + "文章重新发布异常", e);
             }
         }
-        return R.ok("").setMsg("总数:" + aList.size() + "项,成功:" + successNum + "项");
+        return R.ok("").setMsg(String.format("总数: %s 项,成功: %s 项", aList.size(), successNum));
     }
 
 
@@ -207,7 +207,7 @@ public class ArticleController extends ApiController {
                 log.warn("id:" + id + "发布异常", e);
             }
         }
-        return R.ok("").setMsg("总数:" + ids.length + "项,成功:" + successNum + "项");
+        return R.ok("").setMsg(String.format("总数: %s 项,成功: %s 项", ids.length, successNum));
     }
 
     /**
@@ -221,7 +221,7 @@ public class ArticleController extends ApiController {
             resources = resolver.getResources("static/blog/**");
         } catch (IOException e) {
             log.warn("初始化博客：发生异常", e);
-            return R.failed("初始化博客：发生异常," + e.getMessage());
+            return R.failed(String.format("初始化博客：发生异常,%s", e.getMessage()));
         }
         Code blogDirPathCode = codeService.getCodeItem(Code.SYS_CONFIG, "BlogDirPath");
         String aPath = blogDirPathCode.getValue();
@@ -231,10 +231,10 @@ public class ArticleController extends ApiController {
                 FreeMarkerUtil.copyResourceToFile(resource, aPath, "/static/blog/");
                 successFile++;
             } catch (Exception e) {
-                log.warn("复制资源" + resource.getDescription() + "发生异常：" + e.getMessage());
+                log.warn("复制资源 {} 发生异常：", resource.getDescription(), e);
             }
         }
-        return R.ok("").setMsg("初始化博客：共复制" + resources.length + "个文件到[" + aPath + "]路径,成功" + successFile + "个");
+        return R.ok("").setMsg(String.format("初始化博客：共复制%s个文件到[%s]路径,成功%s个", resources.length, aPath, successFile));
     }
 
     @PostMapping("/cleanBlog")
