@@ -62,16 +62,10 @@
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe6b4;</i>
-                    <cite>Other</cite>
+                    <cite>其他</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
-                    <li>
-                        <a _href="jobs-list.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>Task</cite>
-                        </a>
-                    </li>
                     <li>
                         <a _href="unicode.html">
                             <i class="iconfont">&#xe6a7;</i>
@@ -82,6 +76,12 @@
                         <a _href="layuicode.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>Layui图标</cite>
+                        </a>
+                    </li>
+                    <li>
+                        <a _href="jobs-list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>系统</cite>
                         </a>
                     </li>
                 </ul>

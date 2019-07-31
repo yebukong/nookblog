@@ -26,6 +26,7 @@
         <div class="layui-form layui-col-md12 x-so">
           <div class="layui-btn-group" >
             <button class="layui-btn" id="createIndex">生成Blog首页</button>
+            <button class="layui-btn" id="appInfo">系统信息</button>
           </div>
         </div>
       </div>
@@ -41,6 +42,20 @@
                   ,success: function(data,status){
                       if(data && data.code == 0){
                           layer.alert(data.msg);
+                      }else{
+                          layer.alert("操作失败");
+                      }
+                  }
+              });
+          });
+          $("#appInfo").click(function(){
+              MineUtil.ajax({
+                  url: './api/appInfo'
+                  ,type: 'GET'
+                  ,data:{}
+                  ,success: function(data,status){
+                      if(data && data.code == 0){
+                          layer.alert(JSON.stringify(data));
                       }else{
                           layer.alert("操作失败");
                       }
