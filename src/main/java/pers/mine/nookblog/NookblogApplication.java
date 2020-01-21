@@ -15,13 +15,13 @@ import org.springframework.context.annotation.Bean;
 import java.util.Arrays;
 
 @SpringBootApplication
-@EnableFeignClients(basePackages = { "pers.mine.nookblog.rpc"})
+@EnableFeignClients(basePackages = {"pers.mine.nookblog.rpc"})
 public class NookblogApplication extends SpringBootServletInitializer {
     protected final static Logger logger = LoggerFactory.getLogger(NookblogApplication.class);
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(NookblogApplication.class);
-        //app.setBannerMode(Banner.Mode.OFF);
+        app.setBannerMode(Banner.Mode.CONSOLE);
         app.run(args);
         logger.info("NookblogApplication started!");
     }

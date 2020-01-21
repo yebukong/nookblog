@@ -8,7 +8,7 @@
     <version>0.9</version>
     <packaging>jar</packaging>
 
-    <name>nookblog</name>
+    <name>NookBlog</name>
     <description>NookBlog博客发布系统</description>
     <repositories>
         <repository>

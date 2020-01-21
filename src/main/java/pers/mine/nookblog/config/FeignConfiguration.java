@@ -21,13 +21,11 @@ import java.util.List;
  */
 @Configuration
 public class FeignConfiguration {
-    public static int connectTimeOutMillis = 2 * 1000;
-    public static int readTimeOutMillis = 4 * 000;
+    public static int connectTimeOutMillis = 5 * 1000;
+    public static int readTimeOutMillis = 3 * 1000;
 
     @Bean
     public Request.Options options() {
-        // connectTimeoutMillis=2*1000 链接超时时间
-        // readTimeoutMillis=4*1000 响应超时时间
         return new Request.Options(connectTimeOutMillis, readTimeOutMillis);
     }
 
@@ -66,7 +64,6 @@ public class FeignConfiguration {
         ObjectFactory<HttpMessageConverters> objectFactory = () -> new HttpMessageConverters(new MineMessageConverter());
         return new SpringDecoder(objectFactory);
     }
-
 }
 
 class MineMessageConverter extends MappingJackson2HttpMessageConverter {
