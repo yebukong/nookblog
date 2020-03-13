@@ -19,7 +19,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.2.RELEASE</version>
+        <version>2.2.5.RELEASE</version>
         <relativePath/>
     </parent>
     <properties>
@@ -28,8 +28,10 @@
         <!--指定编译的java版本1.7 1.8 1.9 10 11-->
         <java.version>10</java.version>
         <swagger.version>2.9.2</swagger.version>
-        <openfeign.version>2.2.1.RELEASE</openfeign.version>
+        <openfeign.version>2.2.2.RELEASE</openfeign.version>
+        <hutool.version>5.2.2</hutool.version>
         <oshi.version>4.3.0</oshi.version>
+        <mybatis-plus.version>3.3.1</mybatis-plus.version>
     </properties>
 
     <dependencies>
@@ -52,6 +54,16 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
         <!--openfeign-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -68,6 +80,11 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
+            <version>${hutool.version}</version>
         </dependency>
         <!--lombok-->
         <dependency>

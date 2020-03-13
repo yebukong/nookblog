@@ -1,16 +1,20 @@
-logging:
-  level:
-    #feign日志配置
-    pers.mine.nookblog.rpc.*: DEBUG
-#spring MSQL数据库
 spring:
-  devtools:
-    restart:
-      enabled: true
-mine-info:
-  userName: 临时用户
-  userID: minenook
-  password: A6A6ED6D88F078A196A898769940DA2F
-mine:
-  feign:
-    loglevel: FULL
+  devtools: {restart: {enabled: true}}
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    schema: classpath:/db/schema-h2.sql
+    data: classpath:/db/data-h2.sql
+    #spring.datasource.url=jdbc:h2:file:./db/test01  相对路径
+    #spring.datasource.url=jdbc:h2:mem:test
+    #spring.datasource.url=jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    #jdbc:h2:file:/data/sample jdbc:h2:mem:testdb
+    url: jdbc:h2:mem:minenook
+    username: minenook
+    password: minenook
+    platform: h2
+    initialization-mode: always
+    continue-on-error: true
+    driver-class-name: org.h2.Driver
+#feign日志配置
+logging: {level: {pers.mine.nookblog.rpc.*: DEBUG}}
+app: {feign: { loglevel: FULL}}
