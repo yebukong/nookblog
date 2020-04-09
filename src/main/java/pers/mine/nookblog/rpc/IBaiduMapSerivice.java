@@ -23,34 +23,36 @@ public interface IBaiduMapSerivice {
     /**
      * ip转地址api Path
      */
-    public static final  String API_PATH_LOCATION_IP = "/location/ip";
+    String API_PATH_LOCATION_IP = "/location/ip";
+    String CODE_BAIDU_API_CONFIG = "BaiduApiConfig";
 
-    public static final  String CODE_BAIDU_API_CONFIG = "BaiduApiConfig";
-
-
-//    {
-//        "address": "CN|上海|上海|None|CHINANET|0|0",
-//            "content": {
-//        "address_detail": {
-//            "province": "上海市",
-//                    "city": "上海市",
-//                    "district": "",
-//                    "street": "",
-//                    "street_number": "",
-//                    "city_code": 289
-//        },
-//        "address": "上海市",
-//                "point": {
-//            "y": "3642780.37",
-//                    "x": "13524118.26"
-//        }
-//    },
-//        "status": 0
-//    }
+    /**
+     * <pre>
+     * {
+     *  "address": "CN|上海|上海|None|CHINANET|0|0",
+     *  "content": {
+     *      "address_detail": {
+     *          "province": "上海市",
+     *          "city": "上海市",
+     *          "district": "",
+     *          "street": "",
+     *          "street_number": "",
+     *          "city_code": 289
+     *      },
+     *     "address": "上海市",
+     *     "point": {
+     *         "y": "3642780.37",
+     *         "x": "13524118.26"
+     *      }
+     *  },
+     *  "status": 0
+     * }
+     * <pre/>
+     */
     @RequestMapping(value = API_PATH_LOCATION_IP, method = RequestMethod.GET, produces = "application/json")
-    Map<String,Object> getIpInfo(@RequestParam(value = "ip") String ip,
-                  @RequestParam(value = "ak") String ak,
-                  @RequestParam(value = "coor") String coor,
-                  @RequestParam(value = "sn") String sn);
+    Map<String, Object> getIpInfo(@RequestParam(value = "ip") String ip,
+                                  @RequestParam(value = "ak") String ak,
+                                  @RequestParam(value = "coor") String coor,
+                                  @RequestParam(value = "sn") String sn);
 
 }

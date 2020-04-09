@@ -21,7 +21,7 @@ public class MineUtil {
     /**
      * 获取本机的ＩＰ地址
      */
-    public static String getLocalHostIP() {
+    public static String getLocalHostIp() {
         String result = "";
         try {
             InetAddress address = InetAddress.getLocalHost();
@@ -32,7 +32,7 @@ public class MineUtil {
         return StringX.nvl(result, WebKit.UNKNOWN_MAGIC);
     }
 
-    public static String getIPByName(String name) {
+    public static String getIpByName(String name) {
         String result = "";
         try {
             InetAddress address = InetAddress.getByName(name);
@@ -118,11 +118,15 @@ public class MineUtil {
         if (sysProp != null) {
             sysProp.forEach((k, v) -> {
                 String e = k.toString();
-                StringBuffer sbu = new StringBuffer();
+                StringBuilder sbu = new StringBuilder();
                 for (int i = 0; i < e.length(); i++) {
                     Character ch = e.charAt(i);
-                    if (ch == '.') ch = null;
-                    if (i > 0 && '.' == e.charAt(i - 1)) ch = Character.toUpperCase(ch);
+                    if (ch == '.') {
+                        ch = null;
+                    }
+                    if (i > 0 && '.' == e.charAt(i - 1)) {
+                        ch = Character.toUpperCase(ch);
+                    }
 
                     if (ch != null) {
                         sbu.append(ch);

@@ -15,28 +15,29 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Feign相关配置
  */
 @Configuration
 public class FeignConfiguration {
-    public static int connectTimeOutMillis = 5 * 1000;
-    public static int readTimeOutMillis = 3 * 1000;
+    public static int DEFAULT_CONNECT_TIMEOUT = 3;
+    public static int DEFAULT_READ_TIMEOUT = 3;
 
     @Bean
     public Request.Options options() {
-        return new Request.Options(connectTimeOutMillis, readTimeOutMillis);
+        return new Request.Options(DEFAULT_CONNECT_TIMEOUT, TimeUnit.SECONDS, DEFAULT_READ_TIMEOUT, TimeUnit.SECONDS, true);
     }
 
     /**
      * NEVER_RETRY 取消重试
+     * period发起当前请求的时间间隔，单位毫秒
+     * maxPeriod发起当前请求的最大时间间隔，单位毫秒
+     * maxAttempts最多请求次数，包括第一次
      */
     @Bean
     public Retryer feignRetryer() {
-        // period=100 发起当前请求的时间间隔，单位毫秒
-        // maxPeriod=1000 发起当前请求的最大时间间隔，单位毫秒
-        // maxAttempts=5 最多请求次数，包括第一次
         return new Retryer.Default(100, 1000, 3);
     }
 

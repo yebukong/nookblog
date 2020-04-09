@@ -8,9 +8,10 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URLEncoder;
-import java.nio.charset.Charset;
-import java.util.Arrays;
+import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.Map;
+
 @Slf4j
 public class WebKit {
     public static final String UNKNOWN_MAGIC = "unknown";
@@ -89,12 +90,12 @@ public class WebKit {
      * @return URLEncoder.encode(key)=URLEncoder.encode(value)
      */
     public static String parseUrlParam(String key, String value) {
-        StringBuffer sbu = new StringBuffer();
+        StringBuilder sbu = new StringBuilder();
         try {
-            sbu.append(URLEncoder.encode(key, "utf-8"));
+            sbu.append(URLEncoder.encode(key, StandardCharsets.UTF_8));
             sbu.append("=");
 
-            sbu.append(URLEncoder.encode(value, "utf-8"));
+            sbu.append(URLEncoder.encode(value, StandardCharsets.UTF_8));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -105,7 +106,6 @@ public class WebKit {
         throw new UnsupportedOperationException();
     }
 
-
     public static String commonHttpRequestWithTimeOut(String url, String jsonPara, HttpMethod httpMethod, int connectTimeout, int readTimeout) {
         SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
         //设置超时时间
@@ -113,35 +113,32 @@ public class WebKit {
         requestFactory.setReadTimeout(readTimeout);
         RestTemplate restTemplate = new RestTemplate(requestFactory);
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
-        headers.setAccept(Arrays.asList(new MediaType[]{new MediaType("application", "json", Charset.forName("UTF-8"))}));
+        headers.setContentType(new MediaType("application", "json", StandardCharsets.UTF_8));
+        headers.setAccept(Collections.singletonList(new MediaType("application", "json", StandardCharsets.UTF_8)));
         HttpEntity<String> requestEntity = new HttpEntity<String>(jsonPara, headers);
         ResponseEntity<String> exchange = restTemplate.exchange(url, httpMethod, requestEntity, String.class);
-        String result = exchange.getBody();
-
-        return result;
+        return exchange.getBody();
     }
 
     public static String commonHttpRequest(String url, String jsonPara, HttpMethod httpMethod) {
         return commonHttpRequestWithTimeOut(url, jsonPara, httpMethod, 10, 10);
     }
 
-    public static String getCityByIP(String ip){
-        String aliIPUrl = "http://ip.taobao.com/service/getIpInfo.php?ip="+ip;
-        String result ="unknown";
+    public static String getCityByIp(String ip) {
+        String result = "unknown";
         try {
             SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
             RestTemplate restTemplate = new RestTemplate(requestFactory);
-            String resultJson = restTemplate.getForObject("http://ip.taobao.com/service/getIpInfo.php?ip={ip}", String.class,ip);
+            String resultJson = restTemplate.getForObject("http://ip.taobao.com/service/getIpInfo.php?ip={ip}", String.class, ip);
             ObjectMapper mapper = new ObjectMapper();
-            Map ipMap=mapper.readValue(resultJson, Map.class);
-            if("0".equals(ipMap.get("code")+"")){
-                result =   StringX.nvl((String)((Map)ipMap.get("data")).get("city"),"unknown");
+            Map ipMap = mapper.readValue(resultJson, Map.class);
+            if ("0".equals(ipMap.get("code") + "")) {
+                result = StringX.nvl((String) ((Map) ipMap.get("data")).get("city"), "unknown");
             }
         } catch (Exception e) {
-           log.warn("[解析IP发生异常:ip="+ip+"] "+e.getMessage());
+            log.warn("[解析IP发生异常:ip=" + ip + "] " + e.getMessage());
         }
-        log.info("[解析IP:"+ip+"] -> "+result);
-        return  result;
+        log.info("[解析IP:" + ip + "] -> " + result);
+        return result;
     }
 }

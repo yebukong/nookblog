@@ -8,16 +8,23 @@ import java.util.Random;
 
 /**
  * 字符串工具类[一个类的编写竟然跨年了]
+ *
  * @author yebukong
- * @since JDK1.8
  * @date 2017/11/29
+ * @since JDK1.8
  */
 public class StringX {
-    /** 0-9 **/
+    /**
+     * 0-9
+     **/
     public static final char[] BASE_NUMBERS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-    /** a-z **/
+    /**
+     * a-z
+     **/
     public static final char[] LOWER_CASE_ALPHABET = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-    /** A-Z **/
+    /**
+     * A-Z
+     **/
     public static final char[] UPPER_CASE_ALPHABET = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
     private StringX() {
@@ -33,15 +40,16 @@ public class StringX {
     }
 
     public static boolean isEmpty(String str) {
-        return (str == null) || (str.length() == 0);
+        return str == null || str.length() == 0;
     }
 
     public static boolean isNotEmpty(String str) {
-        return (str != null) && (str.length() > 0);
+        return str != null && str.length() > 0;
     }
 
     /**
      * 空格串判断 [\u3000] 全角空格也识别
+     *
      * @see Character#isSpaceChar(char)
      */
     public static boolean isSpace(String str) {
@@ -58,6 +66,7 @@ public class StringX {
 
     /**
      * 空白字符串判断 [\u3000] 全角空格也识别[也包括 \n \t \r 等字符 ]
+     *
      * @see Character#isWhitespace(char)
      */
     public static boolean isBlank(String str) {
@@ -72,7 +81,9 @@ public class StringX {
         return true;
     }
 
-    /** @see #isStrictWhitespace(char) **/
+    /**
+     * @see #isStrictWhitespace(char)
+     **/
     public static boolean isBlankPlus(String str) {
         if (isNotEmpty(str)) {
             int len = str.length();
@@ -85,63 +96,80 @@ public class StringX {
         return true;
     }
 
-    /** @see #isSpace(String) */
+    /**
+     * @see #isSpace(String)
+     */
     public static boolean isNotSpace(String str) {
         return !(isSpace(str));
     }
 
-    /** @see #isBlank(String) */
+    /**
+     * @see #isBlank(String)
+     */
     public static boolean isNotBlank(String str) {
         return !(isBlank(str));
     }
 
-    /** 满足 isEmpty 返回 defaultStr */
+    /**
+     * 满足 isEmpty 返回 defaultStr
+     */
     public static String nvl(String str, String defaultStr) {
         return isEmpty(str) ? defaultStr : str;
     }
 
-    /** @see #isSpace(String) */
+    /**
+     * @see #isSpace(String)
+     */
     public static String nvlForSpace(String str, String defaultStr) {
         return isSpace(str) ? defaultStr : str;
     }
 
-    /** @see #isBlank(String) */
+    /**
+     * @see #isBlank(String)
+     */
     public static String nvlForBlank(String str, String defaultStr) {
         return isBlank(str) ? defaultStr : str;
     }
 
-    /** @see #isBlankPlus(String) */
+    /**
+     * @see #isBlankPlus(String)
+     */
     public static String nvlForBlankPlus(String str, String defaultStr) {
         return isBlankPlus(str) ? defaultStr : str;
     }
 
     public static boolean equals(String strA, String strB) {
-        return isNull(strA) ? false : strA.equals(strB);
+        return !isNull(strA) && strA.equals(strB);
     }
 
     public static boolean equalsIgnoreCase(String strA, String strB) {
-        return isNull(strA) ? false : strA.equalsIgnoreCase(strB);
+        return !isNull(strA) && strA.equalsIgnoreCase(strB);
     }
 
-    /** 删除两端空白字符 */
+    /**
+     * 删除两端空白字符
+     */
     public static String trim(String str) {
         return isEmpty(str) ? str : str.trim();
     }
 
     /**
      * 严格模式删除两端空白字符
+     *
      * @see #isStrictWhitespace(char)
      */
     public static String strictTrim(String str) {
         return isEmpty(str) ? str : trimStart(trimEnd(str));
     }
 
-    /** 删除开头空白字符 */
+    /**
+     * 删除开头空白字符
+     */
     public static String trimStart(String str) {
         if (isNotEmpty(str)) {
             int len = str.length();
             int index = 0;
-            while ((index < len) && (isStrictWhitespace(str.charAt(index)))) {
+            while (index < len && isStrictWhitespace(str.charAt(index))) {
                 index++;
             }
             str = str.substring(index);
@@ -151,13 +179,14 @@ public class StringX {
 
     /**
      * 删除结尾空白字符
+     *
      * @see #isStrictWhitespace(char)
      */
     public static String trimEnd(String str) {
         if (isNotEmpty(str)) {
             int len = str.length();
             int index = len - 1;
-            while ((index > 0) && (isStrictWhitespace(str.charAt(index)))) {
+            while (index > 0 && isStrictWhitespace(str.charAt(index))) {
                 index--;
             }
             str = str.substring(0, index + 1);
@@ -167,6 +196,7 @@ public class StringX {
 
     /**
      * 删除所有空白字符
+     *
      * @see Character#isWhitespace(char)
      */
     public static String delWhitespace(String str) {
@@ -187,6 +217,7 @@ public class StringX {
 
     /**
      * 删除所有空白字符
+     *
      * @see #isStrictWhitespace(char)
      */
     public static String delStrictWhitespace(String str) {
@@ -207,24 +238,30 @@ public class StringX {
 
     /**
      * @param delimiter 定界符
-     * @param strs 源字符数组
+     * @param strs      源字符数组
      * @see String#join(CharSequence, CharSequence...)
      */
     public static String join(String delimiter, String... strs) {
         return String.join(delimiter, strs);
     }
 
-    /** 使长度统一[长切短补 - 前填充] */
+    /**
+     * 使长度统一[长切短补 - 前填充]
+     */
     public static String makeSameWidthPrefix(String str, int width, String keyWord) {
         return makeSameWidth(str, width, keyWord, true);
     }
 
-    /** 使长度统一[长切短补 - 后填充] */
+    /**
+     * 使长度统一[长切短补 - 后填充]
+     */
     public static String makeSameWidthSuffix(String str, int width, String keyWord) {
         return makeSameWidth(str, width, keyWord, false);
     }
 
-    /** 拼接num个字符word并返回 */
+    /**
+     * 拼接num个字符word并返回
+     */
     public static String dup(String word, int num) {
         if (isEmpty(word)) {
             throw new IllegalArgumentException("非法的 word:" + word);
@@ -240,7 +277,9 @@ public class StringX {
         return sb.toString();
     }
 
-    /** 循环填充word到width宽度 */
+    /**
+     * 循环填充word到width宽度
+     */
     public static String dupByWidth(String word, int width) {
         if (isEmpty(word)) {
             throw new IllegalArgumentException("非法的 word:" + word);
@@ -249,23 +288,26 @@ public class StringX {
             throw new IllegalArgumentException("非法的 width:" + width);
         }
         StringBuilder sb = new StringBuilder();
-        int num = ((width - 1) / word.length()) + 1;
-        for (int i = 0; i < num; i++)
+        int num = (width - 1) / word.length() + 1;
+        for (int i = 0; i < num; i++) {
             sb.append(word);
+        }
         return sb.toString().substring(0, width);
     }
 
     /**
      * 判断key是否存在于str中<br>
      * key 或str 满足 isEmpty 亦返回 false
+     *
      * @see String#contains(CharSequence)
      */
     public static boolean contains(String str, String key) {
-        return isEmpty(str) || isEmpty(key) ? false : str.contains(key);
+        return !isEmpty(str) && !isEmpty(key) && str.contains(key);
     }
 
     /**
      * 循环验证 contains(str,key),存在一项则返回true
+     *
      * @see #contains(String, String)
      */
     public static boolean containsKeys(String str, String... keys) {
@@ -280,10 +322,13 @@ public class StringX {
         return false;
     }
 
-    /** String To Unicode */
+    /**
+     * String To Unicode
+     */
     public static String stringToUnicode(String str) {
-        if (isEmpty(str))
+        if (isEmpty(str)) {
             return str;
+        }
         StringBuffer unicode = new StringBuffer();
         for (int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
@@ -292,15 +337,18 @@ public class StringX {
         return unicode.toString();
     }
 
-    /** Unicode To String */
+    /**
+     * Unicode To String
+     */
     public static String unicodeToString(String unicode) {
-        if (isEmpty(unicode))
+        if (isEmpty(unicode)) {
             return unicode;
+        }
         StringBuffer str = new StringBuffer();
         String[] hex = unicode.split("\\\\u");
         for (int i = 1; i < hex.length; i++) {
             int data = Integer.parseInt(hex[i], 16);
-            str.append((char)data);
+            str.append((char) data);
         }
         return str.toString();
     }
@@ -315,7 +363,7 @@ public class StringX {
 
         int len = 0;
         if (isEmpty(str) || (len = str.length()) < width) {
-            return isPrefix ? (dupByWidth(keyWord, width - len) + str) : (str + dupByWidth(keyWord, width - len));
+            return isPrefix ? dupByWidth(keyWord, width - len) + str : str + dupByWidth(keyWord, width - len);
         } else if (len > width) {
             return str.substring(0, width - 1);
         } else {
@@ -323,7 +371,9 @@ public class StringX {
         }
     }
 
-    /** 严格判断是否为空字符[包括non-breaking space {'\u00A0', '\u2007','\u202F'}] */
+    /**
+     * 严格判断是否为空字符[包括non-breaking space {'\u00A0', '\u2007','\u202F'}]
+     */
     private static boolean isStrictWhitespace(char c) {
         return Character.isSpaceChar(c) || Character.isWhitespace(c);
     }
@@ -374,7 +424,7 @@ public class StringX {
      */
     public static String random(int len) {
         return randomForMultiCharPool(len, StringX.BASE_NUMBERS, StringX.LOWER_CASE_ALPHABET,
-            StringX.UPPER_CASE_ALPHABET);
+                StringX.UPPER_CASE_ALPHABET);
     }
 
     /**
@@ -382,7 +432,7 @@ public class StringX {
      */
     public static String random(int len, char[] otherChars) {
         return randomForMultiCharPool(len, StringX.BASE_NUMBERS, StringX.LOWER_CASE_ALPHABET,
-            StringX.UPPER_CASE_ALPHABET, otherChars);
+                StringX.UPPER_CASE_ALPHABET, otherChars);
     }
 
     /**
@@ -416,27 +466,27 @@ public class StringX {
         return parseDate(date, formatStr);
     }
 
-
     public static String toString(Object obj) {
-        return obj==null ? null : obj.toString();
+        return obj == null ? null : obj.toString();
     }
 
     /**
      * 时间转字符串
      */
-    public static String toString(Date date,String format) {
-        format = nvl(format,"yyyy-MM-dd HH:mm:ss");
+    public static String toString(Date date, String format) {
+        format = nvl(format, "yyyy-MM-dd HH:mm:ss");
         String result = "";
-        if(date!=null){
+        if (date != null) {
             SimpleDateFormat sdf = new SimpleDateFormat(format);
             result = sdf.format(date);
         }
         return result;
     }
+
     /**
      * 时间转字符串: yyyy-MM-dd HH:mm:ss
      */
     public static String toString(Date date) {
-        return toString(date,"yyyy-MM-dd HH:mm:ss");
+        return toString(date, "yyyy-MM-dd HH:mm:ss");
     }
 }
