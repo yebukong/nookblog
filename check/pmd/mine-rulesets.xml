@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<ruleset name="mybraces"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+    <description>对p3c-pmd规则做一些调整</description>
+    <rule ref="rulesets/java/ali-comment.xml">
+        <exclude name="ClassMustHaveAuthorRule"/>
+        <exclude name="AbstractMethodOrInterfaceMethodMustUseJavadocRule"/>
+        <exclude name="AvoidCommentBehindStatementRule"/>
+    </rule>
+    <rule ref="rulesets/java/ali-concurrent.xml">
+    </rule>
+    <rule ref="rulesets/java/ali-constant.xml">
+        <exclude name="UndefineMagicConstantRule"/>
+    </rule>
+    <rule ref="rulesets/java/ali-exception.xml">
+    </rule>
+    <rule ref="rulesets/java/ali-flowcontrol.xml">
+    </rule>
+    <rule ref="rulesets/java/ali-naming.xml">
+    </rule>
+    <rule ref="rulesets/java/ali-oop.xml">
+    </rule>
+    <rule ref="rulesets/java/ali-orm.xml">
+    </rule>
+    <rule ref="rulesets/java/ali-other.xml">
+    </rule>
+    <rule ref="rulesets/java/ali-set.xml">
+    </rule>
+
+    <rule ref="rulesets/java/ali-naming.xml/ServiceOrDaoClassShouldEndWithImplRule">
+        <priority>5</priority>
+    </rule>
+    <rule ref="rulesets/java/ali-set.xml/CollectionInitShouldAssignCapacityRule">
+        <priority>5</priority>
+    </rule>
+    <rule ref="rulesets/java/ali-flowcontrol.xml/AvoidComplexConditionRule">
+        <priority>5</priority>
+    </rule>
+
+</ruleset>
