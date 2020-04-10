@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * Base实体父类
  */
-public class SuperEntity<T extends Model<?>>  extends Model<T> {
+public class SuperEntity<T extends Model<?>> extends Model<T> {
     /**
      * 主键
      */

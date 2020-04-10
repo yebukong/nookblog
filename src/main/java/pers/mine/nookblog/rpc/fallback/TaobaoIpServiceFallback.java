@@ -9,7 +9,7 @@ import java.util.Map;
 @Component
 public class TaobaoIpServiceFallback implements ITaobaoIpService {
     @Override
-    public Map<String,Object> getIpInfo(String ip) {
+    public Map<String, Object> getIpInfo(String ip) {
         Map<String, Object> errMap = new HashMap<>();
         errMap.put("code", "-1");
         errMap.put("data", null);

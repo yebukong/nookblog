@@ -9,7 +9,7 @@ import java.util.Map;
 @Component
 public class IBaiduMapSeriviceFallback implements IBaiduMapSerivice {
     @Override
-    public Map<String, Object> getIpInfo(String ip, String ak, String coor,String sn) {
+    public Map<String, Object> getIpInfo(String ip, String ak, String coor, String sn) {
         Map<String, Object> errMap = new HashMap<>();
         errMap.put("status", -1);
         errMap.put("address", null);
