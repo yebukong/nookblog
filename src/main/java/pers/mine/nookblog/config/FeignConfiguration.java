@@ -41,7 +41,7 @@ public class FeignConfiguration {
         return new Retryer.Default(100, 1000, 3);
     }
 
-    @Value("${mine.feign.loglevel}")
+    @Value("${app.feign.loglevel}")
     private String feignLogLeve;
 
     @Bean

@@ -34,7 +34,7 @@ mybatis-plus:
   typeAliasesPackage: pers.mine.nookblog.entity
   typeEnumsPackage: pers.mine.nookblog.entity.enums
   global-config:
-
+    banner: false
     # 数据库相关配置
     db-config:
       #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
@@ -59,7 +59,7 @@ mine-info:
   userName: 临时用户
   userID: minenook
   password: A94817F73C77ABAACE34273DF0500C2F
-mine:
+app:
   feign:
     loglevel: HEADERS
 gitalkConfig:

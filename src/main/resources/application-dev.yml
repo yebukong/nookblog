@@ -2,8 +2,8 @@ spring:
   devtools: {restart: {enabled: true}}
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    schema: classpath:/db/schema-h2.sql
-    data: classpath:/db/data-h2.sql
+    #schema: classpath:/db/schema-h2.sql
+    #data: classpath:/db/data-h2.sql
     #spring.datasource.url=jdbc:h2:file:./db/test01  相对路径
     #spring.datasource.url=jdbc:h2:mem:test
     #spring.datasource.url=jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
@@ -15,6 +15,31 @@ spring:
     initialization-mode: always
     continue-on-error: true
     driver-class-name: org.h2.Driver
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: pers.mine.nookblog.entity
+  typeEnumsPackage: pers.mine.nookblog.entity.enums
+  global-config:
+    banner: false
+    # 数据库相关配置
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: ID_WORKER
+      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY: 非null和"" 判断
+      field-strategy: not_null
+      #驼峰下划线转换
+      column-underline: true
+      #数据库大写小写转换
+      capital-mode: false
+      #逻辑删除配置
+      logic-delete-value: INVALID
+      logic-not-delete-value: VALID
+      db-type: h2
+    #刷新mapper 调试神器
+    refresh: fals
 #feign日志配置
 logging: {level: {pers.mine.nookblog.rpc.*: DEBUG}}
-app: {feign: { loglevel: FULL}}
+app:
+  feign: { loglevel: FULL}
+  request-log: { enabled: true}
