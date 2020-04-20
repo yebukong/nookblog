@@ -22,11 +22,13 @@ public class NookblogApplication extends SpringBootServletInitializer {
     protected final static Logger logger = LoggerFactory.getLogger(NookblogApplication.class);
 
     private static volatile ConfigurableApplicationContext context;
+    private static volatile long applicationStartTime = -1;
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(NookblogApplication.class);
         app.setBannerMode(Banner.Mode.CONSOLE);
         context = app.run(args);
+        applicationStartTime = System.currentTimeMillis();
         logger.info("NookblogApplication started!");
     }
 
@@ -34,15 +36,19 @@ public class NookblogApplication extends SpringBootServletInitializer {
      * 软重启
      */
     public static synchronized void restart() {
-        ApplicationArguments args = context.getBean(ApplicationArguments.class);
         Thread thread = new Thread(() -> {
             try {
+                applicationStartTime = -1;
                 Thread.sleep(2000);
-                context.close();
-                SpringApplication app = new SpringApplication(NookblogApplication.class);
-                app.setBannerMode(Banner.Mode.CONSOLE);
-                context = app.run(args.getSourceArgs());
-                logger.info("NookblogApplication restarted!");
+                synchronized (context) {
+                    ApplicationArguments args = context.getBean(ApplicationArguments.class);
+                    context.close();
+                    SpringApplication app = new SpringApplication(NookblogApplication.class);
+                    app.setBannerMode(Banner.Mode.CONSOLE);
+                    context = app.run(args.getSourceArgs());
+                    applicationStartTime = System.currentTimeMillis();
+                    logger.info("NookblogApplication restarted!");
+                }
             } catch (Exception e) {
                 logger.warn("NookblogApplication started error", e);
             }
@@ -50,11 +56,16 @@ public class NookblogApplication extends SpringBootServletInitializer {
         thread.setDaemon(false);
         thread.start();
     }
+
     /**
      * 硬重启
      */
     public static synchronized void deepRestart() {
 
+    }
+
+    public static long getApplicationStartTime() {
+        return applicationStartTime;
     }
 
     @Bean

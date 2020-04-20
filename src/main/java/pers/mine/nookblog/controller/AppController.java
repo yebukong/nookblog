@@ -61,7 +61,11 @@ public class AppController {
     public R<String> restart() throws IOException {
         //https://blog.csdn.net/qq_34871626/article/details/79100841  服务使用linux命令重启自身服务(java)
         //http://www.spring4all.com/article/1830
-        NookblogApplication.restart();
-        return R.ok("重启中,请等待数秒后访问");
+        if (NookblogApplication.getApplicationStartTime() < 0) {
+            return R.failed("正在重启中,请勿重复进行重启操作");
+        }else{
+            NookblogApplication.restart();
+            return R.ok("重启中,请等待数秒后访问");
+        }
     }
 }
