@@ -171,13 +171,6 @@
                 <configuration>
                     <executable>true</executable>
                 </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <!-- https://github.com/git-commit-id/git-commit-id-maven-plugin -->
             <plugin>
