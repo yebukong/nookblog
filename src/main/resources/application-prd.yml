@@ -14,7 +14,7 @@ spring:
     schema: classpath:/db/schema-mysql.sql
     #进行该配置后，每次启动程序，程序都会运行sql文件，对数据库的数据操作。[前提是schema定义必须存在，且有sql语句(不一定是ddl)]
     data: classpath:/db/data-mysql.sql
-    url: jdbc:mysql://localhost:3306/minenook?useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://localhost:3306/minenook?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull
     username: root
     password: mysql12580
     platform: mysql

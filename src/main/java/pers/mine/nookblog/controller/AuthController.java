@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pers.mine.nookblog.rpc.ITaobaoIpService;
 
+import javax.servlet.http.HttpServletRequest;
+import java.net.http.HttpRequest;
+
 /**
  * @author yebukong
  */
@@ -21,7 +24,7 @@ public class AuthController {
 
     @GetMapping(value = "/auth", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public R<String> auth() {
+    public R<String> auth(HttpServletRequest req) {
         taobaoIpService.getIpInfo("");
         return R.failed("认证失败!");
     }
