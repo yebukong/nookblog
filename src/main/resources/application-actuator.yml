@@ -1,0 +1,29 @@
+# 监控配置
+management:
+  server:
+    port: 54001
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include:
+          - health
+          - info
+          - beans
+          - mappings
+          - env
+          - prometheus
+  trace:
+    http:
+      enabled: false
+  metrics:
+    tags:
+      application: ${spring.application.name}
+    binders:
+      logback:
+        # 关闭logback统计
+        enabled: false
+    web:
+      server:
+        # 关闭request自动时长统计
+        auto-time-requests: false
