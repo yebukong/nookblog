@@ -32,7 +32,7 @@
         <java.version>10</java.version>
         <mybatis-plus-boot-starter.version>3.0.6</mybatis-plus-boot-starter.version>
         <HikariCP.version>3.2.0</HikariCP.version>
-        <commons-io.version>2.4</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <spring.openfeign.version>2.0.3.RELEASE</spring.openfeign.version>
         <docker.image.prefix>springboot</docker.image.prefix>
     </properties>
